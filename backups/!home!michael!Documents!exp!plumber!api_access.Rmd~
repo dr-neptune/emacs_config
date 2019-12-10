@@ -1,0 +1,22 @@
+```{r}
+library(httr)
+library(jsonlite)
+library(tibble)
+library(magrittr)
+```
+
+```{r}
+get_api_png <- function(url) {
+    GET(url) %>%
+        content() %>%
+        grid::grid.raster()
+}
+
+get_api_tibble <- function(url) {
+    GET(url) %>%
+        .$content %>%
+        rawToChar() %>% 
+        fromJSON() %>%
+        as_tibble()
+}
+```

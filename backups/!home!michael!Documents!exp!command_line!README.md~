@@ -1,0 +1,1104 @@
+- [The Linux Command Line](#org524d6a2)
+- [1 | What is the Shell?](#org65e90d4)
+  - [Simple Commands](#org7e6d623)
+- [2 | Navigation](#org7e0cb5c)
+    - [Useful shortcuts](#org015cfad)
+- [3 | Exploring the System](#orgc3583a7)
+    - [Determining a File's Type](#org19e7880)
+    - [Viewing File Contents](#org6a6c506)
+    - [A Guided Tour](#org6ae973b)
+    - [Symbolic Links](#orgf7f190f)
+- [4 | Manipulating Files and Directories](#org94d1b1b)
+    - [Wildcards](#orgd901e26)
+    - [Classes](#org3697392)
+    - [mkdir - Create Directories](#org1f85a70)
+    - [cp - Copy Files and Directories](#org0e88537)
+    - [mv - Move and Rename Files](#org6e96a0b)
+    - [rm - Remove Files and Directories](#org18cc0b7)
+    - [ln - Create Links](#org2aed63a)
+    - [Playground](#org2d95cd2)
+- [5 | Working with Commands](#org180c25a)
+    - [type- Identifying Commands](#orgfb5aa1e)
+    - [which - Display an executable's location](#orgb7a02df)
+    - [help - Getting a Command's Documentation](#orgca3c970)
+    - [&#x2013;help - Display Usage Information](#org0abc706)
+    - [man - Display a Program's Manual Page](#orgdc87573)
+    - [apropos - Display appropriate commands](#orgaca2a9a)
+    - [whatis - Display a very brief description of a command](#org3ac3099)
+    - [info - Display a program's info entry](#org1e435f8)
+    - [alias - Creating Your Own Commands](#org977c937)
+- [6 | Redirection](#org13ae700)
+    - [Redirecting Standard Error](#org4df6023)
+    - [Redirecting Stdout and Stderr to one file](#orgfea0045)
+    - [Disposing of Unwanted Output](#org9d6e85f)
+    - [cat - Redirecting Standard Input](#org2a49ee8)
+    - [Pipes](#org094e4a3)
+    - [sort - sort lists](#org41dda55)
+    - [uniq - report or omit repeated lines](#org7f19a3d)
+    - [wc - Print Line, Word, and Byte Counts](#org6613806)
+    - [grep - Print Lines Matching a Pattern](#org454165f)
+    - [head / tail - Print first / last parts of files](#org8309f16)
+    - [tee - Read from Stdin and output to Stdout and Files](#org6619305)
+
+
+<a id="org524d6a2"></a>
+
+# The Linux Command Line
+
+
+<a id="org65e90d4"></a>
+
+# 1 | What is the Shell?
+
+
+<a id="org7e6d623"></a>
+
+## Simple Commands
+
+```sh
+date
+```
+
+```sh
+cal
+```
+
+```sh
+\#get current amount of free space on disk drives
+df
+```
+
+```sh
+\# display amount of free memory 
+free
+```
+
+
+<a id="org7e0cb5c"></a>
+
+# 2 | Navigation
+
+-   pwd : print name of current working directory
+-   cd : change directory
+-   ls : list directory contents
+
+```sh
+pwd
+```
+
+```sh
+ls 
+```
+
+We change directories with the cd command. cd allows traversal with both the absolute and relative path names.
+
+
+<a id="org015cfad"></a>
+
+### Useful shortcuts
+
+| Shortcut                | Result                                                 |
+|----------------------- |------------------------------------------------------ |
+| cd                      | change directory                                       |
+| cd ~                    | go to top level directory                              |
+| cd ~user<sub>name</sub> | change working directory to home directory of username |
+|                         |                                                        |
+
+Important Facts:
+
+-   Filenames that begin with a period are hidden. This means that ls will not list them unless you say ls -a. When you create an account, several hidden files are placed in your home directory to configure things for your account. We will look at them in the future to customize our environment
+-   Linux has no concept of file extension
+-   Do not embed spaces in filenames
+
+
+<a id="orgc3583a7"></a>
+
+# 3 | Exploring the System
+
+| command | description             |
+|------- |----------------------- |
+| ls      | list directory contents |
+| file    | determine file type     |
+| less    | view file contents      |
+
+```sh
+ls /usr
+```
+
+```sh
+ls /usr ~
+```
+
+```sh
+\# change the output to the long format 
+ls -l
+```
+
+| Field                  | Meaning                                  |
+|---------------------- |---------------------------------------- |
+| -rw-r&#x2013;r--       | Access rights to the file                |
+| leading position       | - means file, d means directory          |
+| next three             | access rights for file owner             |
+| next three             | members of files group                   |
+| file three             | everyone else                            |
+| 1                      | files number of hard links               |
+| michael                | username of the files owner              |
+| michael                | name of the group which owns the file    |
+| 1948176                | size of file in bytes                    |
+| Dec 6 22:19            | Date and time of files last modification |
+| cmd<sub>line.pdf</sub> | name of the file                         |
+
+```sh
+ls -lt --reverse 
+```
+
+| Option | Long Option            | Description                                      |
+|------ |---------------------- |------------------------------------------------ |
+| -a     | &#x2013;all            | List all files                                   |
+| -A     | &#x2013;almost-all     | above minus current dir and parent dir           |
+| -d     | &#x2013;directory      | List directory as file instead of its contents   |
+| -F     | &#x2013;classify       | append indicator char to end of each listed name |
+| -h     | &#x2013;human-readable | display file sizes in human readable format      |
+| -l     |                        | list results in long format                      |
+| -r     | &#x2013;reverse        | display results in reverse order                 |
+| -s     |                        | sort results by file size                        |
+| -t     |                        | sort results by modification time                |
+|        |                        |                                                  |
+
+
+<a id="org19e7880"></a>
+
+### Determining a File's Type
+
+```sh
+file cmd_line.pdf
+file notes.org
+```
+
+
+<a id="org6a6c506"></a>
+
+### Viewing File Contents
+
+```sh
+less /etc/passwd
+```
+
+
+<a id="org6ae973b"></a>
+
+### A Guided Tour
+
+| Directory      | Contents                                                    |
+|-------------- |----------------------------------------------------------- |
+| /bin           | Contains binaries (programs) that let the system boot & run |
+| /boot          | Contains kernel, RAM disk image, and boot loader            |
+| /dev           | Device Nodes                                                |
+| /etc           | Contains all of the system wide configuration files         |
+| /home          | User directories. Users can only write here                 |
+| /lib           | Shared library files used by core system programs           |
+| /lost+found    | Partial recovery from a file system corruption event        |
+| /media         | mount points for usb, cd roms, etc                          |
+| /mnt           | mount points for removable devices mounted manually         |
+| /opt           | used to install optional software                           |
+| /proc          | virtual file system maintained by the linux kernel          |
+| /root          | home dir for root account                                   |
+| /sbin          | system binaries                                             |
+| /tmp           | storage of temporary files                                  |
+| /usr           | all the programs and support files used by regular users    |
+| /usr/bin       | executable files installed by linux distro                  |
+| /usr/lib       | shared libraries for programs in usr/bin                    |
+| */usr/sbin*    | more system administration programs                         |
+| /usr/share     | shared data used by programs in usr/bin                     |
+| /usr/share/doc | documentation for packages installed on system              |
+| /var           | stores data that is likely to change                        |
+| /var/log       | contains log files                                          |
+
+
+<a id="orgf7f190f"></a>
+
+### Symbolic Links
+
+```sh
+ls -l /
+```
+
+The first letter is "l" and the entry points to another. This is a symbolic link, or soft link / sym link. In most unix systems, it is possible to have a file referenced by multiple names.
+
+Consider the scenario:
+
+A program requires the use of a shared resource contained in a file named "foo", but "foo" has frequent version changes. It would be good to include the version number in the filename so the administrator could see what version of "foo" is installed. This is problematic.
+
+If we change the name of the shared resource, we have to track down every program that might use it and change it to look for a new resource name every time a new version of the resource is installed.
+
+Symbolic links help with this problem by allowing us to create an alias for our versioned file, e.g. "foo-2.6" while still maintaining the ability of programs that rely on it to call the file with simply "foo". When we upgrade to 2.7, we can add the file to our system, delete the symlink "foo" and create a new one that points to the new version. Similarly if we wish to downgrade.
+
+There are also links called hard links which allow files to have multiple names, but they do it in a different way.
+
+
+<a id="org94d1b1b"></a>
+
+# 4 | Manipulating Files and Directories
+
+| command | description                         |
+|------- |----------------------------------- |
+| cp      | copy files and directories          |
+| mv      | move / rename files and directories |
+| mkdir   | create directories                  |
+| rm      | remove files and directories        |
+| ln      | create hard and symbolic links      |
+
+An example where command line shines over the gui for file manipulation:
+
+Suppose we wish to copy all the html files from one directory to another, but only files that do not exist in the destination directory or are newer than the versions in the destination directory. This would be tough with a gui, but easy with the cmd line
+
+```sh
+cp -u *.html destination
+```
+
+
+<a id="orgd901e26"></a>
+
+### Wildcards
+
+| Wildcard         | Meaning                                                     |
+|---------------- |----------------------------------------------------------- |
+| \\\*             | Match any characters                                        |
+| \\?              | Match any single character                                  |
+| [Characters]     | Match any character in the set Characters                   |
+| [!Characters]    | Match any char not in the set Characters                    |
+| \[\[:class:\]\\] | Match any character that is a member of the specified class |
+|                  |                                                             |
+
+
+<a id="org3697392"></a>
+
+### Classes
+
+| Character Class | Meaning            |
+|--------------- |------------------ |
+| \\[:alnum:]     | match alphanumeric |
+| \\[:alpha:]     | match alphabetic   |
+| \\[:digit:]     | match numeral      |
+| \\[:lower:]     | match lowercase    |
+| \\[:upper:]     | match uppercase    |
+
+
+<a id="org1f85a70"></a>
+
+### mkdir - Create Directories
+
+```sh
+mkdir dir_name
+```
+
+or
+
+```sh
+mkdir dir1 dir2 dir3
+```
+
+
+<a id="org0e88537"></a>
+
+### cp - Copy Files and Directories
+
+```sh
+cp item1 item2
+```
+
+to copy item1 to file or directory item2 or
+
+```sh
+cp item1 item2 item3 item4 directory
+```
+
+| Option                  | Meaning                                                      |
+|----------------------- |------------------------------------------------------------ |
+| -a, &#x2013;archive     | copy files and maintain all attributes (owner, permissions)  |
+| -i, &#x2013;interactive | before overwriting, prompt user                              |
+| -r, &#x2013;recursive   | recursively copy directories and contents                    |
+| -u, &#x2013;update      | only copy files that don't exist or are newer to destination |
+| -v, &#x2013;verbose     | display informative messages as copy is performed            |
+
+
+<a id="org6e96a0b"></a>
+
+### mv - Move and Rename Files
+
+```sh
+mv item1 item2 itemn directory
+```
+
+| Option                  | Meaning                                            |
+|----------------------- |-------------------------------------------------- |
+| -i, &#x2013;interactive | prompt in case of overwrite                        |
+| -u, &#x2013;update      | only move files that dont exist or are out of date |
+| -v, &#x2013;verbose     | display informative messages                       |
+
+
+<a id="org18cc0b7"></a>
+
+### rm - Remove Files and Directories
+
+```sh
+rm item1 item2 itemn
+```
+
+| option                  | meaning                                    |
+|----------------------- |------------------------------------------ |
+| -i, &#x2013;interactive | prompt for confirmation of delete          |
+| -r, &#x2013;recursive   | delete subdirectories                      |
+| -f, &#x2013;force       | ignore nonexistent files and do not prompt |
+| -v, &#x2013;verbose     | display informative messages               |
+
+**Note**:
+
+Before using rm with wildcards, check what will be effected with ls. There is no undelete function with rm.
+
+
+<a id="org2aed63a"></a>
+
+### ln - Create Links
+
+ln creates either hard or symbolic links
+
+```sh
+\# create a hard link
+ln file link
+
+\# create a symbolic link | item is a file or dir
+ln -s item link
+```
+
+**Hard Links**
+
+By default, every file has a single hard link that gives the file its name. When we create a hard link, we create an additional directory entry for a file. Hard links have two important limitations:
+
+1.  A hard link can not reference a file outside its own file system
+2.  A hard link may not reference a directory
+
+A hard link is indistinguishable from the file itself. When you list a directory containing a hard link, there is no special indication of the link. When a hard link is deleted, the link is removed byt the contents of the file itself continue to exist until all links to the file are deleted.
+
+**Symbolic Links**
+
+Symbolic links work by creating a special type of file that contains a text pointer to the referenced file or directory. If you write something to a symlink, the referenced file is written to. When you delete a symlink, only the link is deleted. If the file is deleted, the symlink will continue to exist but it will point to nothing.
+
+
+<a id="org2d95cd2"></a>
+
+### Playground
+
+Make Directories:
+
+```sh
+mkdir playground
+```
+
+```sh
+ls
+cd playground
+mkdir dir1 dir2
+```
+
+```sh
+ls playground
+```
+
+Copy Files:
+
+```sh
+cp /etc/passwd playground
+```
+
+```sh
+ls -l playground
+```
+
+```sh
+cp -v /etc/passwd playground
+```
+
+```sh
+cp -i /etc/passwd playground
+```
+
+Moving and Renaming Files
+
+```sh
+mv playground/passwd playground/fun
+```
+
+```sh
+mv playground/fun playground/dir1/fun
+```
+
+```sh
+mv playground/dir1/fun playground/dir2/fun
+```
+
+```sh
+mv playground/dir2/fun playground
+```
+
+```sh
+mv playground/fun playground/dir1 
+mv playground/dir1 playground/dir2
+ls -l playground/dir2/dir1
+```
+
+```sh
+mv playground/dir2/dir1 playground
+mv playground/dir1/fun playground
+```
+
+```sh
+ls playground
+```
+
+Creating Hard Links
+
+```sh
+ln playground/fun fun-hard
+ln playground/fun playground/dir1/fun-hard
+ln playground/fun playground/dir2/fun-hard
+```
+
+```sh
+ls -l . playground playground/dir1 playground/dir2
+```
+
+How do we know that fun and fun-hard are the same file? When thinking about hard links, its helpful to imagine files are made of two parts: the data containing the file's contents and the name part which holds the file's name. When we create hard links, we create additional name parts which refer to the same data part. The system assigns a chain of disk blocks to what is called an inode, which is then associated with the name part. Each hard link refers to a specific inode containing the file's contents.
+
+The ls command can reveal this information with the interactive option
+
+```sh
+ls --recursive -li . | grep "fun*"
+```
+
+In the listing above, the first field is the inode number. As we can see, they are all the same file.
+
+Creating Symbolic Links
+
+Symbolic links were created to overcome the two disadvantages of hard links:
+
+1.  Hard links can not span physical devices
+2.  Hard links can not reference directories, only files
+
+```sh
+ln -s playground/fun fun-sym 
+ln -s playground/fun playground/dir1/fun-sym
+ln -s playground/fun playground/dir2/fun-sym
+ls -l . playground playground/dir1 playground/dir2 | grep "sym"
+```
+
+The listing for fun-sym shows that it is a symbolic link by the leading "l" in the first field.
+
+We can use absolute path names or relative path names with symlinks, but it is considered best practices to use relative path names since it allows a directory containing symbolic links to be renamed and/or moved without breaking the links.
+
+Sym links can also reference directories:
+
+```sh
+ln -s playground/dir1 dir1-sym
+ls -l | grep "sym"
+```
+
+Removing Files and Directories
+
+```sh
+\# delete a hard link
+rm fun-hard
+ls -R -l
+```
+
+```sh
+echo y | rm -i playground/fun
+ls playground
+```
+
+```sh
+ls -l | grep sym
+```
+
+Now our link is broken. This is not particularly dangerous, but it is messy. If we try to use a broken link we will get a no such file or directory message.
+
+```sh
+rm -R fun-sym dir1-sym
+ls -R -l | grep sym
+```
+
+One thing to note about symbolic links is that most file operations are carried out on the link's target and not the link itself. rm is an exception.
+
+```sh
+rm -r playground
+```
+
+
+<a id="org180c25a"></a>
+
+# 5 | Working with Commands
+
+| command | explanation                                       |
+|------- |------------------------------------------------- |
+| type    | indicate how a command is interpreted             |
+| which   | display which executable program will be executed |
+| help    | get help for shell builtins                       |
+| man     | display a commands manual page                    |
+| apropos | display a list of appropriate commands            |
+| info    | display a commands info entry                     |
+| whatis  | display a very brief description of a command     |
+| alias   | create an alias for a command                     |
+
+A command can be one of four different things:
+
+1.  An executable program
+2.  A command built into the shell itself
+3.  A shell function
+4.  An alias
+
+| command | description                                       |
+|------- |------------------------------------------------- |
+| type    | indicate how a command name is interpreted        |
+| which   | display which executable program will be executed |
+| help    | get help for shell builtins                       |
+| man     | display a command's manual page                   |
+| apropos | display a list of appropriate commands            |
+| info    | display a command's info entry                    |
+| whatis  | display a very brief description of a command     |
+| alias   | create an alias for a command                     |
+
+A command can be one of four different things:
+
+1.  An executable program
+2.  A command built into the shell itself
+3.  A shell function
+4.  An alias
+
+
+<a id="orgfb5aa1e"></a>
+
+### type- Identifying Commands
+
+It is often useful to know exactly which of the four kinds of commands is being used.
+
+Display a command's type
+
+```sh
+type type 
+type ls 
+type cp
+```
+
+
+<a id="orgb7a02df"></a>
+
+### which - Display an executable's location
+
+```sh
+which ls
+```
+
+which only works for executable programs, not builtins or aliases.
+
+
+<a id="orgca3c970"></a>
+
+### help - Getting a Command's Documentation
+
+Get help for shell builtins
+
+```sh
+help cd
+```
+
+cd: cd [-L|[-P [-e]] [-@]] [dir] Change the shell working directory.
+
+Change the current directory to DIR. The default DIR is the value of the HOME shell variable.
+
+The variable CDPATH defines the search path for the directory containing DIR. Alternative directory names in CDPATH are separated by a colon (:). A null directory name is the same as the current directory. If DIR begins with a slash (/), then CDPATH is not used.
+
+If the directory is not found, and the shell option \`cdable<sub>vars</sub>' is set, the word is assumed to be a variable name. If that variable has a value, its value is used for DIR.
+
+Options: -L force symbolic links to be followed: resolve symbolic links in DIR after processing instances of \`..' -P use the physical directory structure without following symbolic links: resolve symbolic links in DIR before processing instances of \`..' -e if the -P option is supplied, and the current working directory cannot be determined successfully, exit with a non-zero status -@ on systems that support it, present a file with extended attributes as a directory containing the file attributes
+
+The default is to follow symbolic links, as if \`-L' were specified. \`..' is processed by removing the immediately previous pathname component back to a slash or the beginning of DIR.
+
+Exit Status: Returns 0 if the directory is changed, and if $PWD is set successfully when -P is used; non-zero otherwise.
+
+A note on notation:
+
+When the square brackets appear in the description of a command's syntax, they indicate optional items.
+
+For example, cd [-L|[-P [-e]] [-@]] [dir]
+
+\\| means mutually exclusive items
+
+The notation above means cd can be followed by -L OR -P and if followed by -P we can also add -e and/org -@ followed by the optional argument dir.
+
+
+<a id="org0abc706"></a>
+
+### &#x2013;help - Display Usage Information
+
+Many executable programs support a &#x2013;help option that displays a description of the commands supported syntax and options.
+
+```sh
+mkdir --help
+```
+
+Usage: mkdir [OPTION]&#x2026; DIRECTORY&#x2026; Create the DIRECTORY(ies), if they do not already exist.
+
+Mandatory arguments to long options are mandatory for short options too. -m, &#x2013;mode=MODE set file mode (as in chmod), not a=rwx - umask -p, &#x2013;parents no error if existing, make parent directories as needed -v, &#x2013;verbose print a message for each created directory -Z set SELinux security context of each created directory to the default type &#x2013;context[=CTX] like -Z, or if CTX is specified then set the SELinux or SMACK security context to CTX &#x2013;help display this help and exit &#x2013;version output version information and exit
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/> Full documentation <https://www.gnu.org/software/coreutils/mkdir> or available locally via: info '(coreutils) mkdir invocation'
+
+
+<a id="orgdc87573"></a>
+
+### man - Display a Program's Manual Page
+
+```sh
+man ls
+```
+
+man pages generally follow this layout:
+
+| Section | Contents                                       |
+|------- |---------------------------------------------- |
+| 1       | User Commands                                  |
+| 2       | Programming interfaces kernel system calls     |
+| 3       | Programming interfaces to the C library        |
+| 4       | Special files such as device nodes and drivers |
+| 5       | File formats                                   |
+| 6       | Games and amusements such as screen savers     |
+| 7       | Miscellaneous                                  |
+| 8       | System administration commands                 |
+
+We can search man pages
+
+This will display the man page describing the file format of the /etc/passwd file
+
+```sh
+man 5 passwd
+```
+
+PASSWD(5) File Formats and Conversions PASSWD(5)
+
+NAME passwd - the password file
+
+DESCRIPTION /etc/passwd contains one line for each user account, with seven fields delimited by colons (“:”). These fields are:
+
+• login name
+
+• optional encrypted password
+
+• numerical user ID
+
+• numerical group ID
+
+• user name or comment field
+
+• user home directory
+
+• optional user command interpreter
+
+The encrypted password field may be blank, in which case no password is required to authenticate as the specified login name. However, some applications which read the /etc/passwd file may decide not to permit any access at all if the password field is blank. If the password field is a lower-case “x”, then the encrypted password is actually stored in the shadow(5) file instead; there must be a corresponding line in the /etc/shadow file, or else the user account is invalid. If the password field is any other string, then it will be treated as an encrypted password, as specified by crypt(3).
+
+The comment field is used by various system utilities, such as finger(1).
+
+The home directory field provides the name of the initial working directory. The login program uses this information to set the value of the $HOME environmental variable.
+
+The command interpreter field provides the name of the user's command language interpreter, or the name of the initial program to execute. The login program uses this information to set the value of the $SHELL environmental variable. If this field is empty, it defaults to the value /bin/sh.
+
+FILES /etc/passwd User account information.
+
+/etc/shadow optional encrypted password file
+
+/etc/passwd- Backup file for /etc/passwd.
+
+Note that this file is used by the tools of the shadow toolsuite, but not by all user and password management tools.
+
+SEE ALSO crypt(3), getent(1), getpwnam(3), login(1), passwd(1), pwck(8), pwconv(8), pwunconv(8), shadow(5), su(1), sulogin(8).
+
+shadow-utils 4.7 11/13/2019 PASSWD(5)
+
+
+<a id="orgaca2a9a"></a>
+
+### apropos - Display appropriate commands
+
+We can also search the list of man pages for possible matches based on a search term. It's very crude but sometimes helpful
+
+```sh
+apropos floppy
+```
+
+fdformat (8) - low-level format a floppy disk floppyd (1) - floppy daemon for remote access to floppy drive floppyd<sub>installtest</sub> (1) - tests whether floppyd is installed and running mbadblocks (1) - tests a floppy disk, and marks the bad blocks in the FAT mformat (1) - add an MSDOS filesystem to a low-level formatted flopp&#x2026;
+
+
+<a id="org3ac3099"></a>
+
+### whatis - Display a very brief description of a command
+
+```sh
+whatis ls
+```
+
+
+<a id="org1e435f8"></a>
+
+### info - Display a program's info entry
+
+The GNU project provides an alternative to man pages called info. The info program reads info files, which are tree structured into individual nodes, each containing a single topic. Info files contain hyperlinks that can move you from node to node.
+
+For example, this will provide an info pae with hyperlinks to each program contained in the coreutils package
+
+```sh
+info coreutils
+```
+
+
+<a id="org977c937"></a>
+
+### alias - Creating Your Own Commands
+
+It is possible to put more than one command on a line by separating each command with a semicolon.
+
+```sh
+cd /usr; ls; cd ~ 
+```
+
+Now we can alias this.
+
+Check if name is taken:
+
+```sh
+type foo
+```
+
+Not taken.
+
+Create our alias:
+
+```sh
+alias foo='cd /usr; ls; cd ~'
+```
+
+```sh
+foo
+```
+
+```sh
+type foo
+```
+
+```sh
+unalias foo
+type foo
+```
+
+To see all the aliases defined in the environment, use the alias command without arguments
+
+```sh
+alias
+```
+
+
+<a id="org13ae700"></a>
+
+# 6 | Redirection
+
+| Command | Description                                       |
+|------- |------------------------------------------------- |
+| cat     | concatenate files                                 |
+| sort    | sort lines of text                                |
+| uniq    | repeat or omit lines                              |
+| grep    | print new lines matching a pattern                |
+| wc      | print newline, word, and bytecounts for each file |
+| head    | output the first part of a file                   |
+| tail    | output the last part of a file                    |
+| tee     | read from stdin and write to stdout and files     |
+
+Programs in unix generally send their results to a special file called standard output (stdout) and their status messages to another file called standard error (stderr). By default stdout and strerr are linked to the screen and not saved into a disk file.
+
+Many programs also take input from standard input (stdin) which is attached to the keyboard by default.
+
+I/O redirection allows us to change where output goes and where input comes from. To redirect standard out to another file instead of the screen, we use the '>' operator followed by the name of the file.
+
+```sh
+ls -l /usr/bin > ls-output.txt
+ls
+```
+
+```sh
+cat ls-output.txt | head -n 2
+```
+
+```sh
+less ls-output.txt
+```
+
+If we try to redirect something that throws an error, it will use stderr instead of redirecting stdout to a file.
+
+If we ever need to truncate a file or create a new empty file, we can use the redirect operator
+
+```sh
+ls -l *.txt
+> ls-output.txt
+> helloworld.txt
+ls -ls *.txt
+```
+
+In order to append redirected output to a file instead of overwriting the file from the beginning we can use the '>>' operator.
+
+```sh
+ls -l *.txt
+ls -l /usr/bin >> ls-output.txt
+ls -l *.txt
+```
+
+```sh
+rm ls-output.txt
+```
+
+
+<a id="org4df6023"></a>
+
+### Redirecting Standard Error
+
+Redirecting standard error lacks the ease of a dedicated redirection operator. Instead we must refer to its file descriptor.
+
+A program can produce output on any of several numbered file streams. The first three are
+
+1.  standard input
+2.  standard output
+3.  standard error
+
+We can use notation for redirecting files using the file descriptor number. We place the file descriptor 2 immediately before the redirection operator.
+
+```sh
+ls -l /bin/usr 2> ls-error.txt
+```
+
+```sh
+cat ls-error.txt
+```
+
+
+<a id="orgfea0045"></a>
+
+### Redirecting Stdout and Stderr to one file
+
+The traditional way is to perform two redirections. First we redirect standard output to the file ls-output.txt and then we redirect file descriptor 2 to file descriptor 1.
+
+```sh
+ls -l /bin/usr > ls-output.txt 2>&1
+```
+
+```sh
+cat ls-output.txt 
+```
+
+The order of the redirections is significant. The redirection of the standard error must always occur after redirecting standard output or it doesn't work.
+
+Recent versions of bash provide the following more streamlined approach:
+
+```sh
+ls -l /bin/usr &> ls-output2.txt
+```
+
+```sh
+cat ls-output2.txt
+```
+
+We can also append the stdout and stderr in a single file like so
+
+```sh
+ls -l /bin/usr &>> ls-output.txt
+```
+
+```sh
+cat ls-output2.txt
+```
+
+
+<a id="org9d6e85f"></a>
+
+### Disposing of Unwanted Output
+
+We can silence output from a command by redirecting output to /dev/null. This is a system device called a bit bucket which accepts input and does nothing with it.
+
+```sh
+ls -l /bin/usr 2> /dev/null
+```
+
+
+<a id="org2a49ee8"></a>
+
+### cat - Redirecting Standard Input
+
+The cat command reads one or more files and copies them to standard output like so
+
+```sh
+cat ls-output.txt
+```
+
+cat is often used to display short txt files. We can also use it to join files together (hence con-cat-enate)
+
+Let's make some files as an example:
+
+```sh
+for value in {1..10}
+do 
+  echo $value
+  touch file_$value
+  echo "This is file $value" >> file_$value
+done
+```
+
+and then concatenate them:
+
+```sh
+cat file_* > files_together.txt
+```
+
+```sh
+rm file*
+rm ls*
+```
+
+If cat is not given arguments, it waits for stdin from the keyboard
+
+```sh
+cat
+The quick brown fox jumped over the lazy dog
+```
+
+and with file input
+
+```sh
+cat > lazy_dog.txt
+The quick brown fox jumped over the lazy dog.
+```
+
+```sh
+cat lazy_dog.txt
+```
+
+We can also use the "<" redirection operator to change the source of standard input from the keyboard to the file lazy<sub>dog.txt</sub>
+
+```sh
+cat < lazy_dog.txt
+```
+
+
+<a id="org094e4a3"></a>
+
+### Pipes
+
+We can use the pipe operator to redirect the output of one command into the standard input of another.
+
+```sh
+ls -l /usr/bin | head
+```
+
+
+<a id="org41dda55"></a>
+
+### sort - sort lists
+
+```sh
+ls /bin /usr/bin | sort | less
+```
+
+
+<a id="org7f19a3d"></a>
+
+### uniq - report or omit repeated lines
+
+uniq is often used in conjunction with sort. It accepts a sorted list of data from either stdin or a single filename and removes any duplicates from the list.
+
+```sh
+ls /bin /usr/bin | sort | uniq | less
+```
+
+alternatively, we can return the list of duplicates instead
+
+```sh
+ls /bin /usr/bin | sort | uniq -d | less
+```
+
+
+<a id="org6613806"></a>
+
+### wc - Print Line, Word, and Byte Counts
+
+```sh
+ls -l /usr/bin >> ls-output.txt
+```
+
+```sh
+wc ls-output.txt
+```
+
+The numbers above are lines, words, and bytes.
+
+```sh
+ls /bin /usr/bin | sort | uniq | wc -l 
+```
+
+
+<a id="org454165f"></a>
+
+### grep - Print Lines Matching a Pattern
+
+grep uses regular expressions to match patterns.
+
+```sh
+ls /bin /usr/bin | sort | uniq | grep zip
+```
+
+-i causes grep to ignore case when performing the search, and -v tells grep to print lines that do not match the pattern
+
+```sh
+ls /bin /usr/bin | grep -i "ZIP"
+```
+
+
+<a id="org8309f16"></a>
+
+### head / tail - Print first / last parts of files
+
+```sh
+head -n 5 ls-output.txt
+tail -n 5 ls-output.txt
+```
+
+This can be used in pipes as well
+
+```sh
+ls /usr/bin | tail -n 5
+```
+
+tail has an option to view files in real time. This is useful for watching the progress of log files as they are being written.
+
+```sh
+tail -f /var/log/messages
+```
+
+Using the -f option, tail continues to monitor the file and displaying new lines.
+
+
+<a id="org6619305"></a>
+
+### tee - Read from Stdin and output to Stdout and Files
+
+This creates a T pipe, reading stdin and copying it to both stdout and to one or more files. This is useful for capturing a pipelines contents at an intermediate stage of processing.
+
+```sh
+ls /usr/bin | tee ls.txt | grep zip
+```
+
+```sh
+cat ls.txt | head
+```

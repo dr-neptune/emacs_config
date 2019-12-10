@@ -1,0 +1,88 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/michael/Documents/exp/plumber/" . "zoop_api/")
+ ("/home/michael/Documents/exp/lmod/linear_models_with_R/" . ".git/")
+ ("/home/michael/Documents/exp/lmod/" . "linear_models_with_R/")
+ ("/home/michael/Documents/org/" . ".git/")
+ ("/home/michael/Documents/exp/" . "command_line/")
+ ("/home/michael/Documents/" . "exp/")
+ ("/home/michael/" . "Documents/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/michael/Documents/exp/"
+ "/home/michael/Documents/exp/command_line/"
+ "/home/michael/Documents/exp/docker/"
+ "/home/michael/Documents/books/"
+ "/home/michael/Documents/org/"
+ "/home/michael/Documents/exp/plumber/"
+ "/home/michael/Documents/exp/lmod/linear_models_with_R/"
+ "/home/michael/Documents/exp/plumber/zoop_api/"
+ "/home/michael/Documents/exp/esl/"
+ "/home/michael/.emacs.d/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "boop.Rmd"
+ "notes.org"
+ "cmd_line.pdf"
+ "README.md"
+ "get_started.org"
+ "William E. Shotts, Jr. - The Linux command line_ a complete introduction-No Starch Press (2013).pdf"
+ "(Chapman & Hall_CRC Texts in Statistical Science) Julian J Faraway - Linear Models with R-Taylor & Francis (2014).pdf"
+ "gifts.org"
+ "org_literate.org"
+ "org_literate.html"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/michael/" (24045 49352 503972 52000) "Templates/" ".zcompdump-shulgin-5.7.1" "Public/" ".bashrc" "Desktop/" "Downloads/" "yay/" "pkg/" ".config/" ".local/" "Music/" ".pki/" "Firefox_wallpaper.png" ".cargo/" ".gitconfig" ".Rhistory" "R/" ".virtualenvs/" "PKGBUILD" ".rstudio-desktop/" ".bash_profile" ".wget-hsts" "Videos/" "../" ".zshrc" ".keras/" ".mozilla/" ".mplayer/" ".bash_logout" ".zshrc.pre-oh-my-zsh" ".oh-my-zsh/" "Pictures/" ".histfile" "Documents/" ".emacs.d/" ".z" ".zsh_history" "src/" ".bash_history" ".nv/" ".cache/" "./")
+
+ ("/home/michael/Documents/exp/command_line/" (24045 27898 671752 207000) "notes.org" "cmd_line.pdf" "README.md" "../" ".git/" "./")
+
+ ("/home/michael/Documents/exp/docker/" (24038 39824 214649 310000) "pod.yaml" "get_started.org" "../" "./")
+
+ ("/home/michael/.emacs.d/" (24043 7189 526431 950000) "ido.last" "session.108d07470ddec6741157370697458721600000009460071" "session.108d4274644cc73a7d157507911370839100000009720073" "session.105770386578089bbf157361993015591400000009530083" "customizations/" "README.md" "session.106503d10541b0733e157534530874941300000009790073" "session.10804a31da7331b302157370444175250200000009500071" "session.10b26d17f83c393a3f15737065293446000000010030072" "projectile-bookmarks.eld" ".recentf" "session.102c0e6c6abfd550c157516909440923300000009780078" "../" "abbrev_defs" "backups/" "session.103b64abc72bd7f30d15741338423254500000009460073" "init.el" "auto-save-list/" "session.103238361342edcc98157516918027908800000009270071" "elpa/" ".smex-items" "themes/" "session.108caf1a831eb01b29157534355881056800000009760078" "session.10970e0734edba1642157534477486771000000307190071" "./")
+
+ ("/home/michael/.emacs.d/elpa/" (24043 7002 459771 63000) "magit-popup-20180726.2037/" "gnupg/" "ess-18.10.2/" "nyan-mode-20170423.740/" "pkg-info-20150517.1143/" "sesman-20180903.1826/" "s-20180406.808/" "use-package-2.4/" "babel-20181201.919/" "ido-completing-read+-20180628.244/" "dash-20180903.1042/" "tablist-20191129.1850/" "clojure-mode-extra-font-locking-20180114.1711/" "pdf-tools-0.90/" "archives/" "smex-20151212.2209/" "company-0.9.10/" "htmlize-1.55/" "polymode-0.2/" "poly-markdown-0.2/" "exec-path-from-shell-20180324.204/" "tagedit-20161121.855/" "org-bullets-0.2.4/" "magit-2.13.0/" "ghub-20180909.2230/" "../" "git-commit-20180802.2018/" "paredit-20171127.205/" "poly-noweb-20190605.2102/" "spinner-1.7.3/" "julia-mode-20191108.1436/" "async-20180527.1730/" "queue-0.2/" "memoize-20180614.1930/" "pomodoro-20190201.2152/" "projectile-20180824.2239/" "epl-20180205.2049/" "cider-0.20.0/" "prettify-greek-20160603.908/" "all-the-icons-20191025.43/" "with-editor-20180726.2044/" "org-pdfview-0.4/" "poly-R-0.2/" "pretty-mode-2.0.3/" "doom-themes-2.1.6/" "markdown-mode-20190802.2215/" "pretty-symbols-20140814.959/" "bind-key-20191110.416/" "./" "rainbow-delimiters-20170929.1132/" "clojure-mode-20180827.1827/")
+
+ ("/home/michael/.emacs.d/elpa/pdf-tools-0.90/" (24043 7216 776431 114000) "pdf-outline.elc" "pdf-cache.elc" "pdf-occur.elc" "epdfinfo" "pdf-dev.el" "pdf-outline.el" "pdf-history.el" "pdf-virtual.el" "pdf-view.elc" "pdf-isearch.el" "pdf-cache.el" "pdf-virtual.elc" "pdf-isearch.elc" "pdf-tools-autoloads.el" "../" "pdf-history.elc" "pdf-tools.el" "pdf-loader.el" "pdf-sync.elc" "pdf-links.el" "pdf-occur.el" "pdf-view.el" "pdf-annot.elc" "pdf-links.elc" "pdf-info.elc" "pdf-misc.elc" "pdf-util.elc" "pdf-dev.elc" "pdf-info.el" "build/" "pdf-util.el" "pdf-sync.el" "pdf-loader.elc" "pdf-annot.el" "README" "./" "pdf-tools-pkg.el" "pdf-misc.el" "pdf-tools.elc")
+
+ ("/home/michael/.emacs.d/elpa/pdf-tools-0.90/build/" (24043 6817 969776 805000) "Makefile" "server/" "../" "./")
+
+ ("/home/michael/.emacs.d/elpa/pdf-tools-0.90/build/server/" (24043 7216 613097 786000) "stamp-h1" "synctex_parser_utils.c" "m4/" "config.status" "Makefile.in" "poppler-versions" "libsynctex.a" "compile" "aclocal.m4" "epdfinfo" "Makefile" "config.log" "config.h.in" "autogen.sh" "epdfinfo-epdfinfo.o" "libsynctex_a-synctex_parser_utils.o" "synctex_parser.h" "autom4te.cache/" "synctex_parser_utils.h" "../" "config.h" "synctex_parser_version.txt" "libsynctex_a-synctex_parser.o" "missing" "Makefile.am" "ar-lib" "configure" "synctex_parser_readme.txt" "test/" "synctex_parser_local.h" "epdfinfo.c" "configure.ac" "depcomp" "epdfinfo.h" "autobuild" "poppler-hack.cc" "config.guess" "config.sub" ".deps/" "synctex_parser.c" "./" ".gitignore" "epdfinfo-poppler-hack.o" "install-sh")
+
+ ("/home/michael/Documents/books/" (24016 36617 806705 938000) "(Chapman & Hall_CRC Texts in Statistical Science) Julian J Faraway - Linear Models with R-Taylor & Francis (2014).pdf" "../" "./")
+
+ ("/home/michael/Documents/exp/" (24043 6738 406445 966000) "plumber/" "../" "lmod/" "hello_world.Rmd" "command_line/" "docker/" "zipf.R" "boop.html" "org_literate.html" "esl/" "dotfiles/" "./" "boop.Rmd")
+
+ ("/home/michael/Documents/exp/plumber/" (24037 53964 217650 604000) "README_2.md" "insurance.Rmd" "api_access.Rmd" "tg_model.R" "README.md" "plumber_exp.R" "../" ".git/" "insurance.html" "./")
+
+ ("/home/michael/Documents/exp/plumber/zoop_api/" (24035 11506 243832 181000) "../" "plumber.R" "./")
+
+ ("/home/michael/Documents/exp/lmod/linear_models_with_R/.git/" (24029 56422 752724 356000) "objects/" "packed-refs" "index" "HEAD" "../" "hooks/" "refs/" "logs/" "branches/" "description" "info/" "config" "./")
+
+ ("/home/michael/Documents/exp/lmod/linear_models_with_R/" (24029 56365 636057 141000) "mild_nonconstant_var.gif" "Diagnostics.Rmd" "Prediction.Rmd" "nonlinearity.gif" "strong_nonconstant_var.gif" "segment_match.png" "segment_2.png" "comp_dens.png" "README.md" "anim_1.gif" "constant_var.gif" "matching.png" "../" "res_preds.png" "Explanation.Rmd" ".git/" "Estimation.Rmd" "levgs_more_pts.gif" "levgs_faster.gif" "autoregressive.png" "./" "Inference.Rmd")
+
+ ("/home/michael/Documents/exp/lmod/" (24029 56341 89390 240000) "linear_models_with_R/" "../" "./")
+
+ ("/home/michael/Documents/org/" (24017 51929 153454 975000) "plot.html" "plot.svg" "zoopf_files/" "org_literate.org_archive" "study.org" "boop.org" "zoopf.Rmd" "transpiler.Rmd" "plot.png" "../" ".git/" "org_literate.org" "org_literate.html" "./")
+
+ ("/home/michael/Documents/org/.git/" (24016 45150 807012 417000) "objects/" "index" "HEAD" "../" "COMMIT_EDITMSG" "hooks/" "refs/" "logs/" "branches/" "description" "info/" "config" "./")
+
+ ("/home/michael/Documents/" (24016 36608 280038 934000) "books/" "../" "exp/" "./" "org/")
+
+ ("/home/" (24011 21959 886912 534000) "../" "michael/" "./")
+
+ ("/home/michael/Downloads/" (24012 52387 823469 297000) "emacs-for-clojure-book1.zip" "hide-top-panel@dimka665.gmail.com.v8.shell-extension.zip" "../" "iridium-chromedriver_2019.04.73-1iridium0_amd64.deb" "top_bar_attempt_2/" "./" "top_bar/")
+
+ ("/home/michael/Documents/exp/dotfiles/" (24011 34494 198711 928000) "../" "init.el" "emacs-for-clojure-book1/" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

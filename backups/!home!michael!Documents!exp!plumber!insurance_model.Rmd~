@@ -1,0 +1,13 @@
+```{r}
+library(tidyverse)
+library(CASdatasets)
+```
+
+```{r}
+data(brvehins1a)
+
+brv <- brvehins1a %>%
+    as_tibble()
+
+brv %>% dim()
+```

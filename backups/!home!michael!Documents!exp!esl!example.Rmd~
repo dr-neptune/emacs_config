@@ -1,0 +1,15 @@
+```{r}
+library(tidyverse)
+
+box_plotter <- function(param) {
+    param_name <- as.character(param)
+    
+    mtcars %>%
+        ggplot(aes(y = {{param}})) +
+        geom_boxplot()
+}
+
+mtcars %>%
+    as_tibble() %>% 
+    map(., ~ box_plotter(.x))
+```

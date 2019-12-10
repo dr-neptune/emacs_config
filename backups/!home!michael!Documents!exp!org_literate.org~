@@ -1,0 +1,32 @@
+* Literate Programming in Emacs
+
+This is some example text.
+
+Doo
+
+#+BEGIN_SRC R
+---
+title: "R Org Test"
+author: "Michael Rose"
+output: 
+  html_document:
+     highlight: zenburn
+     theme: lumen
+     df_print: paged
+     fig_align: center
+     code_folding: hide
+---
+
+library(tidyverse)
+library(magrittr)
+
+x <- 1:50
+x <- x * x
+y <- runif(n = 50)
+z <- rcauchy(n = 50, location = 0, scale = 1)
+
+(tib <- tibble(x, y, z))
+#+END_SRC
+
+#+RESULTS:
+

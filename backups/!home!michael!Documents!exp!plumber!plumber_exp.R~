@@ -1,0 +1,28 @@
+library(plumber)
+source("~/Documents/exp/plumber/tg_model.R")
+
+#* @apiTitle teen gambling model API
+#* @apiDescription Endpoints for working with the teen gambling dataset
+
+#* Log some information about the incoming request
+#* @filter logger
+function(req){
+  cat(as.character(Sys.time()), "-", 
+      req$REQUEST_METHOD, req$PATH_INFO, "-", 
+      req$HTTP_USER_AGENT, "@", req$REMOTE_ADDR, "\n")
+  
+  # Forward the request
+  forward()
+}
+
+#* Predict gamb values
+#* @param sex Sex of person {0, 1}
+#* @param status Status of person [0, 100]
+#* @param income Income of person [0, 15]
+#* @param verbal ??? of person [0, 10]
+function(sex, status, income, verbal) {
+    predict(lmod, newdata = data.frame("sex" = as.numeric(sex),
+                                       "status" = as.numeric(status),
+                                       "income" = as.numeric(income),
+                                       "verbal" = as.numeric(verbal)))
+}

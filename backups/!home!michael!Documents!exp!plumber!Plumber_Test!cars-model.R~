@@ -1,0 +1,3 @@
+cars_model <- lm(mpg ~ ., mtcars)
+
+saveRDS(cars_model, "cars-model.rds")

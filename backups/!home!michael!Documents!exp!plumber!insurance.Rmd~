@@ -1,0 +1,30 @@
+```{r}
+library(CASdatasets)
+library(tidyverse)
+```
+
+```{r}
+data(ausNLHYClaimByState)
+
+aus <- ausNLHYClaimByState %>%
+    as_tibble()
+
+```
+
+• Class: Class of business.
+• NSWACTYYYYMM : New South Wales / Australian Capital Territory for yearYYYY.
+• VICYYYYMM : Victoria in yearYYYYreported onDateYYYYMM.
+• QLDYYYMM : Queensland in yearYYYYreported onDateYYYYMM.
+• SAYYYYMM : South Australia in yearYYYYreported onDateYYYYMM.
+• WAYYYYMM : Western Australia in yearYYYYreported onDateYYYYMM.
+• TAYYYYMM : Tasmania in yearYYYYreported onDateYYYYMM.
+• NTYYYYMM : Northern Territory in yearYYYYreported onDateYYYYMM.
+• TotalYYYYMM : Total in yearYYYYreported onDateYYYYMM
+
+```{r}
+aus %>%
+    summary()
+
+aus$Class %>%
+    unique()
+```

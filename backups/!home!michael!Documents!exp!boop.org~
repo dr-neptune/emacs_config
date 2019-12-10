@@ -1,0 +1,31 @@
+---
+title: "Rmd Test"
+author: "Michael Rose"
+output: 
+  html_document:
+     highlight: zenburn
+     theme: paper
+     df_print: paged
+     fig_align: center
+     code_folding: hide
+---
+
+* This is an org file
+
+#+BEGIN_SRC R
+library(tidyverse)
+library(magrittr)
+
+x <- 1:50
+x <- x * x
+y <- runif(n = 50)
+z <- rcauchy(n = 50, location = 0, scale = 1)
+
+tib <- tibble(x, y, z)
+
+tib %>% 
+ ggplot(aes(x = x, y = z)) + 
+ geom_point()
+#+END_SRC
+
+#+RESULTS:
