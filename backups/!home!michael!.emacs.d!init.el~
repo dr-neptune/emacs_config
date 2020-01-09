@@ -14,7 +14,6 @@
 (add-to-list 'package-pinned-packages '(cider . "melpa-stable") t)
 (add-to-list 'package-pinned-packages '(magit . "melpa-stable") t)
 
-
 ;; Load and activate emacs packages. Do this first so that the
 ;; packages are loaded before you start trying to modify them.
 ;; This also sets the load path.
@@ -94,6 +93,7 @@
 ;; Add a directory to our load path so that when you `load` things
 ;; below, Emacs knows where to look for the corresponding file.
 (add-to-list 'load-path "~/.emacs.d/customizations")
+(add-to-list 'load-path "~/.emacs.d/elpa")
 
 ;; Sets up exec-path-from-shell so that Emacs will use the correct
 ;; environment variables
@@ -137,7 +137,7 @@
  '(org-agenda-files (quote ("~/Desktop/exp/org/intro_org.org")))
  '(package-selected-packages
    (quote
-    (org-pdfview pdf-tools htmlize babel prettify-greek ample-theme doom-themes material-theme color-theme-sanityinc-tomorrow pretty-mode pretty-symbols sudo-edit company-math drag-stuff move-text org-bullets magit-annex ess-smart-equals yasnippet alarm-clock nyan-mode org-pomodoro gtk-pomodoro-indicator company ess-view auto-auto-indent pandoc auctex poly-R poly-markdown poly-org auto-complete ess ess-R-data-view ess-smart-underscore org org-ref dracula-theme ## magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
+    (org-download org-attach-screenshot dbus-codegen load-dir org-notebook auto-org-md gh-md ox-gfm org-pdfview pdf-tools htmlize babel prettify-greek ample-theme doom-themes material-theme color-theme-sanityinc-tomorrow pretty-mode pretty-symbols sudo-edit company-math drag-stuff move-text org-bullets magit-annex ess-smart-equals yasnippet alarm-clock nyan-mode org-pomodoro gtk-pomodoro-indicator company ess-view auto-auto-indent pandoc auctex poly-R poly-markdown poly-org auto-complete ess ess-R-data-view ess-smart-underscore org org-ref dracula-theme ## magit tagedit rainbow-delimiters projectile smex ido-completing-read+ cider clojure-mode-extra-font-locking clojure-mode paredit exec-path-from-shell))))
 
 ;;; Markdown mode
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
@@ -262,9 +262,9 @@
 
 ;; set TODO workflow for org mode
 (setq org-todo-keywords
-  '((sequence "TODO" "IN-PROG" "WAITING" "DONE")))
+  '((sequence "TODO" "IN-PROG" "READING" "DEPTH" "IMPLEMENT" "HOMEWORK" "WAITING" "DONE")))
 
-(setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("reading" . ?r) ("homework" . ?a)))
+(setq org-tag-alist '(("@DEPTH" . ?d) ("@READING" . ?r) ("IMPLEMENTATION" . ?i) ("HOMEWORK" . ?h)))
 
 ;; set pomodoro to on
 (require 'pomodoro)
@@ -420,3 +420,12 @@
 
 ;; toggle full screen mode 
 (toggle-frame-fullscreen)
+
+;; org screenshot
+(require 'org-download)
+
+(defun org-insert-screenshot () 
+  "Insert a gnome screenshot snippet into org mode" 
+  (org-download-screenshot))
+
+(global-set-key (kbd "C-M-g") 'org-insert-screenshot)

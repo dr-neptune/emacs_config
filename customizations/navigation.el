@@ -21,7 +21,7 @@
 
 
 ;; ido-mode allows you to more easily navigate choices. For example,
-;; when you want to switch buffers, ido presents you with a list
+;; when you want to switch buffers, ido presents you with a st
 ;; of buffers in the the mini-buffer. As you start to type a buffer's
 ;; name, ido will narrow down the list of buffers to match the text
 ;; you've typed in

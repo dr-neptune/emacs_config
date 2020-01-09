@@ -9,6 +9,16 @@
 
 ;; Show line numbers
 (global-linum-mode)
+(pdf-tools-install)
+(add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1)))
+
+;; (global-linum-mode '(:relative t
+;;                                :disabled-for-modes ;;dired-mode
+;;                                ;; doc-view-mode
+;;                                ;; markdown-mode
+;;                                ;; org-mode
+;;                                pdf-view-mode
+;;                                ))
 
 ;; You can uncomment this to remove the graphical toolbar at the top. After
 ;; awhile, you won't need the toolbar.

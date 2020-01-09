@@ -31,7 +31,6 @@
 (require 'jka-compr)
 (require 'bookmark)
 (require 'password-cache)
-
 (declare-function cua-copy-region "cua-base")
 
 
@@ -185,8 +184,6 @@ loaded."
 Issue a warning, if one of them is active in a PDF buffer."
   :group 'pdf-view
   :type '(repeat symbol))
-
-
 ;; * ================================================================== *
 ;; * Internal variables and macros
 ;; * ================================================================== *

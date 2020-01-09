@@ -1,57 +1,122 @@
-- [The Linux Command Line](#org524d6a2)
-- [1 | What is the Shell?](#org65e90d4)
-  - [Simple Commands](#org7e6d623)
-- [2 | Navigation](#org7e0cb5c)
-    - [Useful shortcuts](#org015cfad)
-- [3 | Exploring the System](#orgc3583a7)
-    - [Determining a File's Type](#org19e7880)
-    - [Viewing File Contents](#org6a6c506)
-    - [A Guided Tour](#org6ae973b)
-    - [Symbolic Links](#orgf7f190f)
-- [4 | Manipulating Files and Directories](#org94d1b1b)
-    - [Wildcards](#orgd901e26)
-    - [Classes](#org3697392)
-    - [mkdir - Create Directories](#org1f85a70)
-    - [cp - Copy Files and Directories](#org0e88537)
-    - [mv - Move and Rename Files](#org6e96a0b)
-    - [rm - Remove Files and Directories](#org18cc0b7)
-    - [ln - Create Links](#org2aed63a)
-    - [Playground](#org2d95cd2)
-- [5 | Working with Commands](#org180c25a)
-    - [type- Identifying Commands](#orgfb5aa1e)
-    - [which - Display an executable's location](#orgb7a02df)
-    - [help - Getting a Command's Documentation](#orgca3c970)
-    - [&#x2013;help - Display Usage Information](#org0abc706)
-    - [man - Display a Program's Manual Page](#orgdc87573)
-    - [apropos - Display appropriate commands](#orgaca2a9a)
-    - [whatis - Display a very brief description of a command](#org3ac3099)
-    - [info - Display a program's info entry](#org1e435f8)
-    - [alias - Creating Your Own Commands](#org977c937)
-- [6 | Redirection](#org13ae700)
-    - [Redirecting Standard Error](#org4df6023)
-    - [Redirecting Stdout and Stderr to one file](#orgfea0045)
-    - [Disposing of Unwanted Output](#org9d6e85f)
-    - [cat - Redirecting Standard Input](#org2a49ee8)
-    - [Pipes](#org094e4a3)
-    - [sort - sort lists](#org41dda55)
-    - [uniq - report or omit repeated lines](#org7f19a3d)
-    - [wc - Print Line, Word, and Byte Counts](#org6613806)
-    - [grep - Print Lines Matching a Pattern](#org454165f)
-    - [head / tail - Print first / last parts of files](#org8309f16)
-    - [tee - Read from Stdin and output to Stdout and Files](#org6619305)
+- [The Linux Command Line](#orgb41875f)
+- [1 | What is the Shell?](#org87f763b)
+  - [Simple Commands](#org1db1766)
+- [2 | Navigation](#orga53ebda)
+    - [Useful shortcuts](#orgfee539e)
+- [3 | Exploring the System](#org8282545)
+    - [Determining a File's Type](#orgbefd0a6)
+    - [Viewing File Contents](#org7037be7)
+    - [A Guided Tour](#orge06407e)
+    - [Symbolic Links](#org656692b)
+- [4 | Manipulating Files and Directories](#org8b97edd)
+    - [Wildcards](#orgd1fe268)
+    - [Classes](#org22f8368)
+    - [mkdir - Create Directories](#orgc27972d)
+    - [cp - Copy Files and Directories](#org84c8f49)
+    - [mv - Move and Rename Files](#orgeddd38e)
+    - [rm - Remove Files and Directories](#org03e3b0d)
+    - [ln - Create Links](#org848cf80)
+    - [Playground](#org3fec714)
+- [5 | Working with Commands](#org765c526)
+    - [type- Identifying Commands](#org1717a75)
+    - [which - Display an executable's location](#org00da604)
+    - [help - Getting a Command's Documentation](#orgcb3486e)
+    - [&#x2013;help - Display Usage Information](#orgfba7208)
+    - [man - Display a Program's Manual Page](#org5edbd07)
+    - [apropos - Display appropriate commands](#org2b803eb)
+    - [whatis - Display a very brief description of a command](#orgb7e7eec)
+    - [info - Display a program's info entry](#org8ac9539)
+    - [alias - Creating Your Own Commands](#orgfdf7c60)
+- [6 | Redirection](#orga6086e1)
+    - [Redirecting Standard Error](#orge14f9bb)
+    - [Redirecting Stdout and Stderr to one file](#orge1c084b)
+    - [Disposing of Unwanted Output](#org12ba12b)
+    - [cat - Redirecting Standard Input](#org89086c5)
+    - [Pipes](#org9baafb5)
+    - [sort - sort lists](#org5b71084)
+    - [uniq - report or omit repeated lines](#org0d7bb01)
+    - [wc - Print Line, Word, and Byte Counts](#org6b78674)
+    - [grep - Print Lines Matching a Pattern](#org87f3eff)
+    - [head / tail - Print first / last parts of files](#org6f15e9f)
+    - [tee - Read from Stdin and output to Stdout and Files](#orge9a1383)
+- [7 | Seeing the World as the Shell Sees It](#org38f0b7c)
+    - [Expansion](#org634651d)
+    - [Pathname Expansion](#org334ccd1)
+    - [Tilde Expansion](#org1297404)
+    - [Arithmetic Expansion](#org79a499c)
+    - [Brace Expansion](#org8dc10a9)
+    - [Parameter Expansion](#orgd42b67a)
+    - [Command Substitution](#org18b8f86)
+    - [Quoting](#org8b89541)
+    - [Escaping Characters](#org7d84016)
+- [8 | Advanced Keyboard Tricks](#orgbe8024c)
+    - [Cursor Movement](#org6f672d6)
+    - [Cut and Paste](#org1aa3e2a)
+    - [Completion](#org45a43a4)
+    - [Using History](#orgbe5b22d)
+    - [History Expansion](#org97f877c)
+- [9 | Permissions](#org35c3e94)
+    - [Owners, Group Members, and Everybody Else](#orgb332f9c)
+    - [Reading, Writing, and Executing](#org9e20d3e)
+    - [chmod - change file mode](#orgd23c3c9)
+    - [umask - Set Default Permissions](#orgd7fd8eb)
+    - [Changing Identities](#orgf67827a)
+    - [su - Run a Shell with Substitute User and Group IDs](#org5b34402)
+    - [sudo - Execute a Command as Another User](#org9ca2688)
+    - [chown - Change File Owner and Group](#org5c52142)
+    - [Changing Your Password](#org175a703)
+- [10 | Processes](#org387a509)
+    - [How a Process Works](#org7ae910a)
+    - [ps - Viewing Processes](#org4c48d04)
+    - [top - View Processes Dynamically](#org9c09c5f)
+    - [Controlling Processes](#orga4309c0)
+    - [kill - Signals](#org559bc5d)
+- [11 | The Environment](#org0a08cc1)
+    - [What is Stored in the Environment?](#org6cb5e18)
+- [12 | A Gentle Introduction to vi](#orgfb710a2)
+- [13 | Customizing the Prompt](#org6c85eeb)
+    - [Anatomy of a Prompt](#org16d4703)
+- [14 | Package Management](#org5250188)
+    - [Common Package Management Tasks](#orgaa39bdb)
+    - [Installing a Package from a Repository](#org458facf)
+    - [Installing a Package from a Package File](#orgab4ddec)
+    - [Removing a Package](#org9bfd19e)
+    - [Updating Packages from a Repository](#org5bfbd88)
+    - [Upgrading a Package from a Package File](#org1a61cf4)
+    - [Listing Installed Packages](#org4793c5e)
+    - [Determining if a package is installed](#orgfef73ac)
+    - [Displaying Info About an Installed Package](#orgbabf08c)
+- [15 | Storage Media](#orgf44d274)
+    - [Mounting and Unmounting Storage Devices](#orgcc723aa)
+    - [Viewing a List of Mounted File Systems](#org15567a1)
+    - [Determining Device Names](#orgcfd5253)
+    - [Creating New File Systems](#org0ff8230)
+    - [Moving Data Directly To/From Devices](#org942c46d)
+    - [Creating an Image from a Collection of Files](#orgde20831)
+    - [Mounting an ISO Image Directly](#orge9b6c46)
+- [16 | Networking](#orgd69c7fd)
+    - [Examining and Monitoring a Network](#org4ed117b)
+    - [Transporting Files Over a Network](#org8ed4390)
+- [17 | Searching for Files](#orgcb5de81)
+    - [locate - fine files the easy way](#org186cf6e)
+    - [find - find files the hard way](#org7f9e5e3)
+- [18 | Archiving and Backup](#orgad90057)
+  - [Compressing Files](#org7fbfbc3)
+  - [Archiving Files](#org32869f0)
+  - [Synchronizing Files](#org9c99398)
 
 
-<a id="org524d6a2"></a>
+<a id="orgb41875f"></a>
 
 # The Linux Command Line
 
 
-<a id="org65e90d4"></a>
+<a id="org87f763b"></a>
 
 # 1 | What is the Shell?
 
 
-<a id="org7e6d623"></a>
+<a id="org1db1766"></a>
 
 ## Simple Commands
 
@@ -74,7 +139,7 @@ free
 ```
 
 
-<a id="org7e0cb5c"></a>
+<a id="orga53ebda"></a>
 
 # 2 | Navigation
 
@@ -93,7 +158,7 @@ ls
 We change directories with the cd command. cd allows traversal with both the absolute and relative path names.
 
 
-<a id="org015cfad"></a>
+<a id="orgfee539e"></a>
 
 ### Useful shortcuts
 
@@ -111,7 +176,7 @@ Important Facts:
 -   Do not embed spaces in filenames
 
 
-<a id="orgc3583a7"></a>
+<a id="org8282545"></a>
 
 # 3 | Exploring the System
 
@@ -166,7 +231,7 @@ ls -lt --reverse
 |        |                        |                                                  |
 
 
-<a id="org19e7880"></a>
+<a id="orgbefd0a6"></a>
 
 ### Determining a File's Type
 
@@ -176,7 +241,7 @@ file notes.org
 ```
 
 
-<a id="org6a6c506"></a>
+<a id="org7037be7"></a>
 
 ### Viewing File Contents
 
@@ -185,7 +250,7 @@ less /etc/passwd
 ```
 
 
-<a id="org6ae973b"></a>
+<a id="orge06407e"></a>
 
 ### A Guided Tour
 
@@ -215,7 +280,7 @@ less /etc/passwd
 | /var/log       | contains log files                                          |
 
 
-<a id="orgf7f190f"></a>
+<a id="org656692b"></a>
 
 ### Symbolic Links
 
@@ -236,7 +301,7 @@ Symbolic links help with this problem by allowing us to create an alias for our 
 There are also links called hard links which allow files to have multiple names, but they do it in a different way.
 
 
-<a id="org94d1b1b"></a>
+<a id="org8b97edd"></a>
 
 # 4 | Manipulating Files and Directories
 
@@ -257,7 +322,7 @@ cp -u *.html destination
 ```
 
 
-<a id="orgd901e26"></a>
+<a id="orgd1fe268"></a>
 
 ### Wildcards
 
@@ -271,7 +336,7 @@ cp -u *.html destination
 |                  |                                                             |
 
 
-<a id="org3697392"></a>
+<a id="org22f8368"></a>
 
 ### Classes
 
@@ -284,7 +349,7 @@ cp -u *.html destination
 | \\[:upper:]     | match uppercase    |
 
 
-<a id="org1f85a70"></a>
+<a id="orgc27972d"></a>
 
 ### mkdir - Create Directories
 
@@ -299,7 +364,7 @@ mkdir dir1 dir2 dir3
 ```
 
 
-<a id="org0e88537"></a>
+<a id="org84c8f49"></a>
 
 ### cp - Copy Files and Directories
 
@@ -322,7 +387,7 @@ cp item1 item2 item3 item4 directory
 | -v, &#x2013;verbose     | display informative messages as copy is performed            |
 
 
-<a id="org6e96a0b"></a>
+<a id="orgeddd38e"></a>
 
 ### mv - Move and Rename Files
 
@@ -337,7 +402,7 @@ mv item1 item2 itemn directory
 | -v, &#x2013;verbose     | display informative messages                       |
 
 
-<a id="org18cc0b7"></a>
+<a id="org03e3b0d"></a>
 
 ### rm - Remove Files and Directories
 
@@ -357,7 +422,7 @@ rm item1 item2 itemn
 Before using rm with wildcards, check what will be effected with ls. There is no undelete function with rm.
 
 
-<a id="org2aed63a"></a>
+<a id="org848cf80"></a>
 
 ### ln - Create Links
 
@@ -385,7 +450,7 @@ A hard link is indistinguishable from the file itself. When you list a directory
 Symbolic links work by creating a special type of file that contains a text pointer to the referenced file or directory. If you write something to a symlink, the referenced file is written to. When you delete a symlink, only the link is deleted. If the file is deleted, the symlink will continue to exist but it will point to nothing.
 
 
-<a id="org2d95cd2"></a>
+<a id="org3fec714"></a>
 
 ### Playground
 
@@ -534,7 +599,7 @@ rm -r playground
 ```
 
 
-<a id="org180c25a"></a>
+<a id="org765c526"></a>
 
 # 5 | Working with Commands
 
@@ -575,7 +640,7 @@ A command can be one of four different things:
 4.  An alias
 
 
-<a id="orgfb5aa1e"></a>
+<a id="org1717a75"></a>
 
 ### type- Identifying Commands
 
@@ -590,7 +655,7 @@ type cp
 ```
 
 
-<a id="orgb7a02df"></a>
+<a id="org00da604"></a>
 
 ### which - Display an executable's location
 
@@ -601,7 +666,7 @@ which ls
 which only works for executable programs, not builtins or aliases.
 
 
-<a id="orgca3c970"></a>
+<a id="orgcb3486e"></a>
 
 ### help - Getting a Command's Documentation
 
@@ -636,7 +701,7 @@ For example, cd [-L|[-P [-e]] [-@]] [dir]
 The notation above means cd can be followed by -L OR -P and if followed by -P we can also add -e and/org -@ followed by the optional argument dir.
 
 
-<a id="org0abc706"></a>
+<a id="orgfba7208"></a>
 
 ### &#x2013;help - Display Usage Information
 
@@ -653,7 +718,7 @@ Mandatory arguments to long options are mandatory for short options too. -m, &#x
 GNU coreutils online help: <https://www.gnu.org/software/coreutils/> Full documentation <https://www.gnu.org/software/coreutils/mkdir> or available locally via: info '(coreutils) mkdir invocation'
 
 
-<a id="orgdc87573"></a>
+<a id="org5edbd07"></a>
 
 ### man - Display a Program's Manual Page
 
@@ -723,7 +788,7 @@ SEE ALSO crypt(3), getent(1), getpwnam(3), login(1), passwd(1), pwck(8), pwconv(
 shadow-utils 4.7 11/13/2019 PASSWD(5)
 
 
-<a id="orgaca2a9a"></a>
+<a id="org2b803eb"></a>
 
 ### apropos - Display appropriate commands
 
@@ -736,7 +801,7 @@ apropos floppy
 fdformat (8) - low-level format a floppy disk floppyd (1) - floppy daemon for remote access to floppy drive floppyd<sub>installtest</sub> (1) - tests whether floppyd is installed and running mbadblocks (1) - tests a floppy disk, and marks the bad blocks in the FAT mformat (1) - add an MSDOS filesystem to a low-level formatted flopp&#x2026;
 
 
-<a id="org3ac3099"></a>
+<a id="orgb7e7eec"></a>
 
 ### whatis - Display a very brief description of a command
 
@@ -745,7 +810,7 @@ whatis ls
 ```
 
 
-<a id="org1e435f8"></a>
+<a id="org8ac9539"></a>
 
 ### info - Display a program's info entry
 
@@ -758,7 +823,7 @@ info coreutils
 ```
 
 
-<a id="org977c937"></a>
+<a id="orgfdf7c60"></a>
 
 ### alias - Creating Your Own Commands
 
@@ -804,7 +869,7 @@ alias
 ```
 
 
-<a id="org13ae700"></a>
+<a id="orga6086e1"></a>
 
 # 6 | Redirection
 
@@ -862,7 +927,7 @@ rm ls-output.txt
 ```
 
 
-<a id="org4df6023"></a>
+<a id="orge14f9bb"></a>
 
 ### Redirecting Standard Error
 
@@ -885,7 +950,7 @@ cat ls-error.txt
 ```
 
 
-<a id="orgfea0045"></a>
+<a id="orge1c084b"></a>
 
 ### Redirecting Stdout and Stderr to one file
 
@@ -922,7 +987,7 @@ cat ls-output2.txt
 ```
 
 
-<a id="org9d6e85f"></a>
+<a id="org12ba12b"></a>
 
 ### Disposing of Unwanted Output
 
@@ -933,7 +998,7 @@ ls -l /bin/usr 2> /dev/null
 ```
 
 
-<a id="org2a49ee8"></a>
+<a id="org89086c5"></a>
 
 ### cat - Redirecting Standard Input
 
@@ -992,7 +1057,7 @@ cat < lazy_dog.txt
 ```
 
 
-<a id="org094e4a3"></a>
+<a id="org9baafb5"></a>
 
 ### Pipes
 
@@ -1003,7 +1068,7 @@ ls -l /usr/bin | head
 ```
 
 
-<a id="org41dda55"></a>
+<a id="org5b71084"></a>
 
 ### sort - sort lists
 
@@ -1012,7 +1077,7 @@ ls /bin /usr/bin | sort | less
 ```
 
 
-<a id="org7f19a3d"></a>
+<a id="org0d7bb01"></a>
 
 ### uniq - report or omit repeated lines
 
@@ -1029,7 +1094,7 @@ ls /bin /usr/bin | sort | uniq -d | less
 ```
 
 
-<a id="org6613806"></a>
+<a id="org6b78674"></a>
 
 ### wc - Print Line, Word, and Byte Counts
 
@@ -1048,7 +1113,7 @@ ls /bin /usr/bin | sort | uniq | wc -l
 ```
 
 
-<a id="org454165f"></a>
+<a id="org87f3eff"></a>
 
 ### grep - Print Lines Matching a Pattern
 
@@ -1065,7 +1130,7 @@ ls /bin /usr/bin | grep -i "ZIP"
 ```
 
 
-<a id="org8309f16"></a>
+<a id="org6f15e9f"></a>
 
 ### head / tail - Print first / last parts of files
 
@@ -1089,7 +1154,7 @@ tail -f /var/log/messages
 Using the -f option, tail continues to monitor the file and displaying new lines.
 
 
-<a id="org6619305"></a>
+<a id="orge9a1383"></a>
 
 ### tee - Read from Stdin and output to Stdout and Files
 
@@ -1101,4 +1166,1873 @@ ls /usr/bin | tee ls.txt | grep zip
 
 ```sh
 cat ls.txt | head
+```
+
+
+<a id="org38f0b7c"></a>
+
+# 7 | Seeing the World as the Shell Sees It
+
+| Command | Description            |
+|------- |---------------------- |
+| echo    | Display a line of text |
+
+
+<a id="org634651d"></a>
+
+### Expansion
+
+```sh
+echo this is a test
+```
+
+```sh
+echo *
+```
+
+
+<a id="org334ccd1"></a>
+
+### Pathname Expansion
+
+```sh
+echo c*
+```
+
+```sh
+echo *.md
+```
+
+```sh
+echo [[:upper:]]*
+```
+
+```sh
+echo /usr/* /share
+```
+
+Pathname Expansion of Hidden Files:
+
+```sh
+cd /
+echo .[!.]*
+```
+
+
+<a id="org1297404"></a>
+
+### Tilde Expansion
+
+If you use the ~ character at the beginning of a word, it expands into the name of the home directory of the named user, or, if no user is named, the home directory of the current user
+
+```sh
+echo ~
+```
+
+
+<a id="org79a499c"></a>
+
+### Arithmetic Expansion
+
+```sh
+echo $((2 + 2))
+```
+
+| Operator | Description      |
+|-------- |---------------- |
+| +        | Addition         |
+| -        | Subtraction      |
+| \\\*     | Multiplication   |
+| \\/      | Integer Division |
+| %        | Modulo           |
+| \\\*\*   | exponentiation   |
+
+```sh
+echo $(($((2**2)) * 3))
+```
+
+```sh
+echo $(((5**2) * 3))
+```
+
+```sh
+echo Five fivided fy fwo efuals $((5/2)) fith $((5%2)) feftover
+```
+
+
+<a id="org8dc10a9"></a>
+
+### Brace Expansion
+
+With brace expansions we can create multiple text strings from a pattern containing braces.
+
+```sh
+echo Front-{A,B,C}-Back
+```
+
+Patterns to be brace expanded may contain a leading portion called a preamble and a trailing portion called a postscript.
+
+The brace expression itself may contain either a comma separated list of strings or a range of integers or single characters. The pattern may not contain embedded white space.
+
+```sh
+echo Number_{1..5}
+```
+
+We can also zero pad integers
+
+```sh
+echo {01..15}
+echo {001..15}
+echo {Z..A}
+echo a{A{1,2},B{3,4}}b
+```
+
+01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 001 002 003 004 005 006 007 008 009 010 011 012 013 014 015 Z Y X W V U T S R Q P O N M L K J I H G F E D C B A aA1b aA2b aB3b aB4b
+
+This is good for making lists of files or directories to be created
+
+```sh
+mkdir Photos
+cd Photos
+rm -r {2007..2019}-{01..12}
+cd ..
+rm -r Photos
+ls
+```
+
+
+<a id="orgd42b67a"></a>
+
+### Parameter Expansion
+
+The system stores many variables.
+
+```sh
+echo $USER
+```
+
+To see a list of available variables
+
+```sh
+printenv
+```
+
+
+<a id="org18b8f86"></a>
+
+### Command Substitution
+
+We can use the output of a command as an expression
+
+```sh
+echo $(ls)
+```
+
+A useful application of this is
+
+```sh
+ls -l $(which cp)
+ls -l $(which python)
+ls -l $(which R)
+```
+
+With a pipeline, the results of the it become to arguments to the file command
+
+```sh
+file $(ls -d /usr/bin/* | grep zip)
+```
+
+We can also use alternate syntax from older shell programs
+
+```sh
+ls -l `which cp`
+```
+
+
+<a id="org8b89541"></a>
+
+### Quoting
+
+If we provide shell commands with extra spaces or dollar signs, we may run into problems. This can be fixed with quotes
+
+**Double Quotes**
+
+If you place text within double quotes, all the special characters used by the shell lose their special meaning and are treated as ordinary characters.
+
+There are some exceptions.
+
+Word splitting, pathname expansion, tilde expansion and brace expansion are surpressed, but parameter expansion, arithmetic expansion and command substitution are still carried out.
+
+```sh
+touch "two words.txt"
+ls
+rm two*
+```
+
+Parameter expansion, arithmetic expansion and command substitution still take place within double quotes
+
+```sh
+echo "$USER $((2+2)) $(cal)"
+```
+
+michael 4 December 2019 Su Mo Tu We Th Fr Sa 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+
+The fact that newlines are considered delimiters by the word splitting mechanism causes an interesting effect on command substitution.
+
+This looks at echo with 31 inputs
+
+```sh
+echo $(cal)
+```
+
+This looks at echo with one input
+
+```sh
+echo "$(cal)"
+```
+
+**Single Quotes**
+
+Single quotes suppress all expansions.
+
+Unquoted
+
+```sh
+echo text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER
+```
+
+Double Quotes
+
+```sh
+echo "text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER"
+```
+
+Single Quotes
+
+```sh
+echo 'text ~/*.txt {a,b} $(echo foo) $((2+2)) $USER'
+```
+
+
+<a id="org7d84016"></a>
+
+### Escaping Characters
+
+We can escape a single character with a backslash
+
+```sh
+echo "The balance for user $USER is: \$5.00"
+```
+
+**Backslash Escape Sequences**
+
+We can also use backslashes to represent certain characters called control codes.
+
+| Escape Sequence | Meaning                           |
+|--------------- |--------------------------------- |
+| \a              | bell (cause the computer to beep) |
+| \b              | backspace                         |
+| \n              | newline                           |
+| \r              | carriage return                   |
+| \t              | tab                               |
+
+For example, here is a rudimentary countdown timer
+
+```sh
+sleep 5
+echo "Time's up\a"
+```
+
+
+<a id="orgbe8024c"></a>
+
+# 8 | Advanced Keyboard Tricks
+
+| Command | Description                              |
+|------- |---------------------------------------- |
+| clear   | Clear the screen                         |
+| history | display the contents of the history list |
+
+
+<a id="org6f672d6"></a>
+
+### Cursor Movement
+
+| Key    | Action                                  |
+|------ |--------------------------------------- |
+| ctrl-d | delete the character at cursor position |
+| ctrl-t | transpose the character                 |
+| alt-t  | transpose the word                      |
+| alt-l  | Convert from cursor to EOL to lowercase |
+| alt-u  | Convert from cursor to EOL to uppercase |
+
+
+<a id="org1aa3e2a"></a>
+
+### Cut and Paste
+
+| Key           | Action                         |
+|------------- |------------------------------ |
+| ctrl-k        | Kill text to EOL               |
+| ctrl-u        | Kill text to Beginning of line |
+| alt-d         | kill text to end of word       |
+| alt-backspace | kill text to beginning of word |
+| ctrl-y        | yank text from kill ring       |
+
+
+<a id="org45a43a4"></a>
+
+### Completion
+
+| key    | action                               |
+|------ |------------------------------------ |
+| alt-?  | Display list of possible completions |
+| alt-\* | Insert all possible completions      |
+
+
+<a id="orgbe5b22d"></a>
+
+### Using History
+
+bash maintains a history of commands that have been entered. These are kept in your home directory in a file called .bash<sub>history</sub>. By default bash stores the last 500 commands entered.
+
+```sh
+history | tail -n 5
+```
+
+Suppose we check the history of commands on a specific folder like so:
+
+```sh
+\history | grep /usr/bin
+```
+
+We get back a set of results prefaced by a number (like 888). This is the line number of the command in the history list.
+
+We can use this to perform another type of expansion called history expansion. To use our line, we could do this
+
+```sh
+!888
+```
+
+which expands the contents of that line to the terminal.
+
+We can also search our history for commands using ctrl-r followed by the text of what you are looking for. Once found you can either run the command with enter or use ctrl-j to copy the line from the history list to the current command line.
+
+| Key    | Action                                                                   |
+|------ |------------------------------------------------------------------------ |
+| ctrl-p | move to previous history entry                                           |
+| ctrl-n | move to next history entry                                               |
+| alt-<  | move to the beginning of history list                                    |
+| alt->  | move to the bottom of the history list                                   |
+| ctrl-r | reverse incremental search                                               |
+| apt-p  | reverse search, non-incremental                                          |
+| alt-n  | forward-search, non-incremental                                          |
+| ctrl-o | execute the current item in the history listand advance to the next one. |
+
+
+<a id="org97f877c"></a>
+
+### History Expansion
+
+We already saw that we could use ! to insert an entry from the history list. Here are other expansion features
+
+| sequence | action                                        |
+|-------- |--------------------------------------------- |
+| !!       | repeat last command                           |
+| !number  | repeat list item number                       |
+| !string  | repeat last history item starting with string |
+| !?string | repeat last history item containing string    |
+
+**Script**
+
+There is also a program called script that can be used to record an entire shell session and store it in a file. The basic syntax is script [file] where file is the name of the file used for storing and recording.
+
+
+<a id="org35c3e94"></a>
+
+# 9 | Permissions
+
+| command | description                       |
+|------- |--------------------------------- |
+| id      | display user identity             |
+| chmod   | change a file's mode              |
+| umask   | set the default file permissions  |
+| su      | run the shell as another user     |
+| sudo    | execute a command as another user |
+| chown   | change a files owner              |
+| chgrp   | change a files group ownership    |
+| passwd  | change a users password           |
+
+
+<a id="orgb332f9c"></a>
+
+### Owners, Group Members, and Everybody Else
+
+In the Unix security model, a user may own files and directories. This means the user has control over its access. Users can, in turn, belong to a group consisting of one or more users who are given access to files and directories by their owners. In addition to granting access to a group, an owner may also grant some access rights to everybody.
+
+To find out information about your identity
+
+```sh
+id
+```
+
+When user accounts are created, users are assigned a number called a userID or uid which is mapped to a username.
+
+User accounts are defined in the /etc/passwd file and groups are defined in the /etc/group file. When user accounts and groups are created, these files are modified along with /etc/shadow which holds information about a users password.
+
+
+<a id="org9e20d3e"></a>
+
+### Reading, Writing, and Executing
+
+```sh
+> foo.txt
+ls -l foo.txt
+```
+
+The first 10 characters of the listing are the file attributes.
+
+| Attribute | File Type                                                 |
+|--------- |--------------------------------------------------------- |
+| -         | regular file                                              |
+| d         | directory                                                 |
+| l         | a symbolic link                                           |
+| c         | character special file. Handles data as a stream of bytes |
+| b         | block special file. Handles data in blocks                |
+
+The remaining nine characters of the file attributes, called file mode, represent the read, write, and execute permissions for the file's owner, the file's group owner, and everybody else
+
+| Owner | Group | World |
+|----- |----- |----- |
+| rwx   | rwx   | rwx   |
+
+| attribute | files                                   | directories                                             |
+|--------- |--------------------------------------- |------------------------------------------------------- |
+| r         | open and read                           | list contents if execute is set                         |
+| w         | write or truncate, not rename or delete | if executable is set, allows create, delete, and rename |
+| x         | treat file as a program and execute     | allows a directory to be entered                        |
+
+
+<a id="orgd23c3c9"></a>
+
+### chmod - change file mode
+
+This changes the mode (permissions) of a file or directory. Only the file s user or superuser can change the mode of a file or directory.
+
+There are two ways to specifying mode changes: octal and symbolic
+
+**Octal**
+
+| Octal | Binary | File Mode |
+|----- |------ |--------- |
+| 0     | 000    | ---       |
+| 1     | 001    | &#x2013;x |
+| 2     | 010    | -w-       |
+| 3     | 011    | -wx       |
+| 4     | 100    | r--       |
+| 5     | 101    | r-x       |
+| 6     | 110    | rw-       |
+| 7     | 111    | rwx       |
+
+```sh
+ls -l foo*
+chmod 600 foo.txt
+ls -l foo*
+```
+
+**Symbolic**
+
+Symblic notation is divided into 3 parts:
+
+-   who the change will effect
+-   which operation will be performed
+-   what permission will be set
+
+| symbol    | meaning                                  |
+|--------- |---------------------------------------- |
+| u         | user (file / directory owner)            |
+| g         | group owner                              |
+| o         | others                                   |
+| a         | all                                      |
+| +         | permission to be added                   |
+| -         | permission to be taken away              |
+| \\=       | only apply specified, remove other       |
+| u+x       | add execute for the owner                |
+| u-x       | remove execute for the owner             |
+| +x        | add execute for owner, group, other      |
+| o-rw      | remove read/write for other              |
+| go=rw     | set execute for owner only               |
+| u+x,go=rx | comma allows for multiple specifications |
+
+
+<a id="orgd7fd8eb"></a>
+
+### umask - Set Default Permissions
+
+The umask command controls the default permissions given to a file when it is created. It uses octal notation to express a mask of bits to be removed from a file's mode attributes
+
+```sh
+ls -l foo*
+rm -f foo.txt 
+umask
+> foo.txt 
+ls -l foo* 
+```
+
+We see that the default value applied by the umask is 22, which gives the owner read and write and everyone else read.
+
+We can set our own umask
+
+```sh
+rm foo.txt 
+umask 0000 
+> foo.txt 
+ls -l foo*
+```
+
+When we set the mask to 0000 (turning it off), the file is now world writable.
+
+```sh
+rm foo.txt 
+umask 0022 
+> foo.txt 
+ls -l foo*
+```
+
+
+<a id="orgf67827a"></a>
+
+### Changing Identities
+
+There are 3 ways to take on an alternate identity:
+
+1.  Log out and log back in as the alternate user
+2.  Use the su command
+3.  Use the sudo command
+
+
+<a id="org5b34402"></a>
+
+### su - Run a Shell with Substitute User and Group IDs
+
+The su command is used to start a shell as another user
+
+```sh
+su [-[l]] [user]
+```
+
+The -l option states that the resulting shell session is a login shell for a specified user. This means that the user's environment is loaded and the working directory is changed to the user's home directory.
+
+To start a shell for the superuser, we can do
+
+```sh
+su -
+```
+
+Once finished, we can exit
+
+```sh
+exit
+```
+
+We can also issue a single command rather than starting a shell session with su -c 'command'. We want to enclose the command in quotes so that expansion only occurs in the new shell
+
+```sh
+su archie -c 'cd ~/Documents; ls -l'
+```
+
+
+<a id="org9ca2688"></a>
+
+### sudo - Execute a Command as Another User
+
+The sudo command allows an ordinary user to execute commands as a different user in a very controlled way. One important difference between su and sudo is that sudo does not start a new shell, nor does it load another users environment. This means commands do not need to be quotes any differently.
+
+```sh
+sudo -l
+```
+
+
+<a id="org5c52142"></a>
+
+### chown - Change File Owner and Group
+
+The chown command is used to change the owner and group owner of a file or directory. Superuser priveleges are required to use this command.
+
+```sh
+chown [owner] [:[group]] file...
+```
+
+Here are some examples
+
+| Argument  | Results                                         |
+|--------- |----------------------------------------------- |
+| bob       | Changes the ownership of file from owner to bob |
+| bob:users | ownership : owner -> bob, group owner -> users  |
+| :admins   | chanes group owner to admins                    |
+| bob:      | owner -> bob, group owner -> bob's group        |
+
+Suppose we have two users, Janet (who has sudo) and Tony (who does not). Janet wishes to copy a file from her home directory to the directory of Tony. Since Janet wants to let Tony edit the file, Janet changes the ownership of the copied file from Janet to Tony
+
+```sh
+sudo cp myfile.txt ~tony
+sudo ls -l ~tony/myfile.txt 
+sudo chown tony: ~tony/myfile.txt 
+sudo ls -l ~tony/myfile.txt
+```
+
+**Exercising Our Priveleges**
+
+We are going to set up a shared directory.
+
+First we need to create a group that will have all the users in it.
+
+```sh
+sudo groupadd groupname
+gpasswd -a michael groupname 
+gpasswd -a archie groupname 
+groups michael 
+groups archie 
+```
+
+Next, the user with sudo creates the directory for the files
+
+```sh
+# sudo mkdir /usr/local/share/dshare
+ls -ld /usr/local/share/dshare
+```
+
+The directory is owned by root and has 755 permissions. To make this directory shareable, we need to change the group ownership and group permissions to allow writing
+
+```sh
+sudo chown :groupname /usr/local/share/dshare 
+sudo chmod 775 /usr/local/share/dshare
+ls -ld /usr/local/share/dshare
+```
+
+We now have a directory that is owned by root and allows read and write access to the group dshare. dshare has members michael and archie, thus they can both create files in directory /usr/local/share/dshare. Other users can list the contents of the directory, but cannot create files there.
+
+Some problems are left. When a new file or directory is created within the dshare directory they will have the normal permissions of the users michael and archie.
+
+The default umask on the system is 0022, which prevents group members from writing files belonging to other members of the group. This is reasonable if we don't want people to write to each others files / folders, but if we want to allow people to create new files and subdirectories inside directories, we need to change the umask used by michael and archie to 0002 instead.
+
+Second, each file and directory created by one member will be set to the primary group of the user rather than the group dshare. This can be fixed by setting the setgid bit on the directory.
+
+```sh
+sudo chmod g+s /usr/local/share/dshare
+ls -ld /usr/local/share/dshare
+```
+
+Now to see if the new permissions fix the problem, michael sets the umask to 0002, removes the previous test file and creates a new test file and directory.
+
+```sh
+umask 0002 
+> /usr/local/share/dshare/testfile 
+mkdir /usr/local/share/dshare/test_dir 
+ls -l /usr/local/share/dshare
+```
+
+
+<a id="org175a703"></a>
+
+### Changing Your Password
+
+To set or change a password, the passwd command is used
+
+```sh
+passwd [user]
+```
+
+
+<a id="org387a509"></a>
+
+# 10 | Processes
+
+| command  | description                            |
+|-------- |-------------------------------------- |
+| ps       | report a snapshot of current processes |
+| top      | display tasks                          |
+| jobs     | list active jobs                       |
+| bg       | place a job in the background          |
+| fg       | place a job in the foreground          |
+| kill     | send a signal to a process             |
+| killall  | kill processes by name                 |
+| shutdown | shut down or reboot system             |
+
+
+<a id="org7ae910a"></a>
+
+### How a Process Works
+
+When a system starts up, the kernel initiates a few of its own activities as processes and launches a program called init. init, in turn runs a series of shell scripts called init scripts which start all of the system services. Many of these services are implemented as daemon programs, which sit in the background and run without any user interface.
+
+A program can launch other programs. This is shown to the process scheme as a parent process producing a child process. Each process is assigned a process ID or PID.
+
+
+<a id="org4c48d04"></a>
+
+### ps - Viewing Processes
+
+```sh
+ps | head -n 5
+```
+
+ps shows us the processes associated with the current terminal session
+
+TTY is short for Teletype and refers to the controlling terminal for the process. The time field is the amount of cpu time consumed by the process.
+
+```sh
+ps x
+```
+
+The x (without a leading dash) tells ps to show all of the processes regardless of what terminal they are controlled by.
+
+A new column called STAT has been added to the output. Its short for STATE and reveals the current status of the process.
+
+| State | Meaning                   |
+|----- |------------------------- |
+| R     | Running                   |
+| S     | Sleeping                  |
+| D     | Uninterruptable Sleep     |
+| T     | Stopped                   |
+| Z     | Defunct or Zombie process |
+| <     | High priority process     |
+| N     | A low priority process    |
+
+Another option gives us more information
+
+```sh
+ps aux
+```
+
+This displays the processes belonging to every user.
+
+| Header | Meaning                                   |
+|------ |----------------------------------------- |
+| USER   | User ID                                   |
+| %CPU   | CPU Usage                                 |
+| %MEM   | Memory Usage                              |
+| VSZ    | Virtual Memory Size                       |
+| RSS    | Resident Set Size (physical memory usage) |
+| START  | Time when the process started             |
+
+
+<a id="org9c09c5f"></a>
+
+### top - View Processes Dynamically
+
+Top shows a more dynamic view of the machine's activity. It updates its display of the system processes every 3 seconds (by default). The table of processes is sorted by CPU activity.
+
+
+<a id="orga4309c0"></a>
+
+### Controlling Processes
+
+**Interrupting a Process**
+
+ctrl-c
+
+**Putting a Process in the Background**
+
+To launch a program so that it is immediately placed in the background we follow the command with an & character
+
+```sh
+gedit &
+```
+
+When ran, the shell returns the PID of the process running. If we run ps we can see the process returned
+
+The shell's jon control facility also gives us a way to list the jobs that have been launched from our terminal.
+
+```sh
+jobs
+```
+
+**Returning a Process to the Foreground**
+
+A process in the background is immune to keyboard input and interruption via ctrl-c. We can return a process to the foreground with the fg command
+
+We can either call fg which pulls forward the most recent job, or pass it a parameter from the jobs prompt as such
+
+```sh
+jobs 
+fg %1
+```
+
+**Stopping (Pausing) a Process**
+
+We can stop a process without terminating it. This is often done to allow a foreground process to be moved to the background.
+
+To stop a foreground process, use ctrl-z
+
+Once suspended, we can restore the program to the foreground using the fg command or move to program to the background with the bg command.
+
+As with the fg command, the jobspec is optional if there is only one job.
+
+**Why start graphical programs via cmd line?**
+
+-   They show any error messages that might occur
+-   They may offer command options unavailable from the regular driver
+
+
+<a id="org559bc5d"></a>
+
+### kill - Signals
+
+The kill command is used to kill processes.
+
+```sh
+gedit & 
+pgrep -f gedit | xargs kill -9
+```
+
+We can also use the jobspec as such
+
+```sh
+kill %1 
+```
+
+The kill command doesn't exactly kill the process, it sends them signals. Signals are one of the ways that operating systems communicate with programs.
+
+Examples of these signals are ctrl-c and ctrl-z. When the terminal receives one of these keystrokes, it sends a signal to the program in the foreground. For example, ctrl-c sends a signal called INT (Interrupt) and ctrl-z sends TSTP (Terminal Stop). Programs in turn listen for signals and may act upon them as they are received.
+
+**Sending Signals to Processes with Kill**
+
+```sh
+kill [-signal] PID...
+```
+
+If no signal is specified, then the TERM (Terminate) signal is sent by default. The kill command is most often used to send the following signals
+
+| \\# | Name | Meaning                                   |
+|--- |---- |----------------------------------------- |
+| 1   | HUP  | Hangup. Restart and reread config         |
+| 2   | INT  | Interrupt. ctrl-c                         |
+| 9   | KILL | Tells the kernel to interrupt the process |
+| 15  | TERM | Terminate. Signal sent by kill            |
+| 18  | CONT | Continue. Restore a process after a stop  |
+| 19  | STOP | Stop. Pause process without terminating   |
+
+```sh
+gedit & 
+kill -1 $(pgrep gedit)
+gedit & 
+kill -INT $(pgrep gedit)
+gedit & 
+kill -SIGINT $(pgrep gedit)
+gedit & 
+kill -INT %1
+```
+
+Processes, like files, have owners and you must be the owner of a process in order to send it signals with kill.
+
+**Other Common Signals**
+
+| \\# | Name  | Meaning                |
+|--- |----- |---------------------- |
+| 3   | QUIT  | quit                   |
+| 11  | SEGV  | Segmentation Violation |
+| 20  | TSTP  | Terminal Stop          |
+| 28  | WINCH | Window Change          |
+
+To see a complete list of signals:
+
+```sh
+kill -l
+```
+
+HUP INT QUIT ILL TRAP ABRT BUS FPE KILL USR1 SEGV USR2 PIPE ALRM TERM STKFLT CHLD CONT STOP TSTP TTIN TTOU URG XCPU XFSZ VTALRM PROF WINCH IO PWR SYS RTMIN RTMIN+1 RTMIN+2 RTMIN+3 RTMIN+4 RTMIN+5 RTMIN+6 RTMIN+7 RTMIN+8 RTMIN+9 RTMIN+10 RTMIN+11 RTMIN+12 RTMIN+13 RTMIN+14 RTMIN+15 RTMAX-14 RTMAX-13 RTMAX-12 RTMAX-11 RTMAX-10 RTMAX-9 RTMAX-8 RTMAX-7 RTMAX-6 RTMAX-5 RTMAX-4 RTMAX-3 RTMAX-2 RTMAX-1 RTMAX
+
+**Sending Signals to Multiple Processes with killall**
+
+```sh
+killall [-u user] [-signal] name...
+```
+
+```sh
+gedit &
+gedit &
+gedit &
+killall gedit 
+```
+
+**More Process Related Commands**
+
+| Command | Description                                |
+|------- |------------------------------------------ |
+| pstree  | process list in a tree pattern             |
+| vmstat  | output a snapshot of system resource usage |
+| xload   | gui for load over time                     |
+| tload   | terminal graph for load over time          |
+
+
+<a id="org0a08cc1"></a>
+
+# 11 | The Environment
+
+The shell maintains a body of information during our shell session called the environment. Data stored in the environment is used by programs to configure files to store program settings or to adjust their behavior.
+
+| command  | description                               |
+|-------- |----------------------------------------- |
+| printenv | print part or all of the environment      |
+| set      | set shell options                         |
+| export   | export environment to subsequent programs |
+| alias    | create an alias for a command             |
+
+
+<a id="org6cb5e18"></a>
+
+### What is Stored in the Environment?
+
+The shell stores two types of data in the environment:
+
+1.  Environment Variables - Everything besides shell variables
+2.  Shell Variables - data placed there by bash, including aliases and shell functions.
+
+**Examining the Environment**
+
+We can use the set builtin in bash or the printenv program. the set command shows both the shell and environment variables while printenv will only display environment variables.
+
+```sh
+printenv | less
+```
+
+We can also grab a particular variable
+
+```sh
+printenv XDG_SESSION_DESKTOP
+```
+
+```sh
+set | less
+```
+
+We can also see the outputs of the environment with echo
+
+```sh
+echo $HOME
+```
+
+set and printenv do not display aliases. We can use the alias command without arguments to see a list of aliases.
+
+```sh
+alias
+```
+
+**Some Interesting Variables**
+
+| Variable | Contents                                     |
+|-------- |-------------------------------------------- |
+| SHELL    | Name of shell program                        |
+| HOME     | path of home directory                       |
+| LANG     | Character set and collation                  |
+| PAGER    | Program for paging output                    |
+| PATH     | directories searched for executable programs |
+| PWD      | Current working directory                    |
+| TERM     | Name of terminal type                        |
+| USER     | Your username                                |
+
+**How is the environment established**
+
+When the bash program starts, it reads a series of configuration scripts called startup files which define the default environment shared by all users.
+
+Login shells read one or more of the following files
+
+| File                      | Contents                                          |
+|------------------------- |------------------------------------------------- |
+| /etc/profile              | Global configuration script                       |
+| ~/.bash<sub>profile</sub> | A user's personal startup file                    |
+| ~/.bash<sub>login</sub>   | If bash<sub>profile</sub> not found, this is used |
+| ~/.profile                | if profile and login don't work                   |
+
+Non login shells read the following files
+
+| File             | Contents                      |
+|---------------- |----------------------------- |
+| /etc/bash.bashrc | A global configuration script |
+| ~/.bashrc        | A users personal startup file |
+
+**What's in a Startup File?**
+
+```sh
+cat /etc/profile
+```
+
+**How does the shell find commands?**
+
+The PATH variable is often set by the /etc/profile startup file. PATH tells the shell where to look for executable programs. It does this using parameter expansion.
+
+```sh
+foo="This is some "
+echo $foo
+foo=$foo"text."
+echo $foo
+```
+
+If we want to tell the shell to make the contents of PATH available to child processes of this shell we can use export
+
+```sh
+export PATH
+```
+
+**Modifying the Environment**
+
+As a general rule, to add directories to your PATH, or define additional environment variables, place those changes in .bash<sub>profile</sub>. For everything else place the changes in .bashrc. Unless you are a sysadmin and need to change the defaults for all users of the system, restrict your modifications to the files in the home directory.
+
+**Example : Editing bashrc**
+
+First we should create a backup. This is important when dealing with important configuration files.
+
+```sh
+cp .bashrc .bashrc.backup
+```
+
+Now we can start the editor
+
+```sh
+nano .bashrc
+```
+
+Add some changes
+
+```text
+# Change umask to make directory sharing easier
+umask 0002
+# Ignore duplicates in command history and increase
+# history size to 1000 lines
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+# Add some helpful aliases
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+```
+
+Close nano and save with ctrl-x-s.
+
+Tell bash to reread the new bashrc file.
+
+```sh
+source .bashrc
+```
+
+
+<a id="orgfb710a2"></a>
+
+# 12 | A Gentle Introduction to vi
+
+Nothing to see here, move along
+
+
+<a id="org6c85eeb"></a>
+
+# 13 | Customizing the Prompt
+
+
+<a id="org16d4703"></a>
+
+### Anatomy of a Prompt
+
+Our default prompt looks something like
+
+[user@computer ~]$
+
+We can edit this. The prompt is defined by an environment variable named PS1.
+
+```sh
+echo $PS1
+```
+
+There are many ways to customize this with colors and effects. Look into ANSI escape sequences. Alternatively, you can customize your shell by using different shell programs like fish or zsh.
+
+
+<a id="org5250188"></a>
+
+# 14 | Package Management
+
+
+<a id="orgaa39bdb"></a>
+
+### Common Package Management Tasks
+
+We will look at the most common operations that are performed with the command line package tools. In this case, debian is what you would use if using Ubuntu.
+
+| Style   | Commands                                 |
+|------- |---------------------------------------- |
+| Debian  | apt-get update                           |
+|         | apt-cache search search<sub>string</sub> |
+| Red Hat | yum search search<sub>string</sub>       |
+| Arch    | pacman -F search<sub>string</sub>        |
+
+
+<a id="org458facf"></a>
+
+### Installing a Package from a Repository
+
+| Style   | Command                                |
+|------- |-------------------------------------- |
+| Debian  | apt-get update                         |
+|         | apt-get install package<sub>name</sub> |
+| Red Hat | yum install package<sub>name</sub>     |
+| Arch    | pacman -S package<sub>name</sub>       |
+
+
+<a id="orgab4ddec"></a>
+
+### Installing a Package from a Package File
+
+If a package file has been downloaded from a source other than a repository, it can be installed directly using a low level tool
+
+| Style   | Command                                     |
+|------- |------------------------------------------- |
+| Debian  | dpkg &#x2013;install package<sub>file</sub> |
+| Red Hat | rpm -i package<sub>file</sub>               |
+| Arch    | Choose a tool for AUR or build              |
+
+
+<a id="org9bfd19e"></a>
+
+### Removing a Package
+
+| Style   | Command                               |
+|------- |------------------------------------- |
+| Debian  | apt-get remove package<sub>name</sub> |
+| Red Hat | yum erase package<sub>name</sub>      |
+| Arch    | pacman -R package<sub>name</sub>      |
+
+
+<a id="org5bfbd88"></a>
+
+### Updating Packages from a Repository
+
+| Style   | Command        |
+|------- |-------------- |
+| Debian  | apt-get update |
+| Red Hat | yum update     |
+| Arch    | pacman -Syu    |
+
+
+<a id="org1a61cf4"></a>
+
+### Upgrading a Package from a Package File
+
+| Style   | Command                                     |
+|------- |------------------------------------------- |
+| Debian  | dpkg &#x2013;install package<sub>file</sub> |
+| Red Hat | rpm -U package<sub>file</sub>               |
+
+
+<a id="org4793c5e"></a>
+
+### Listing Installed Packages
+
+| Style   | Commands          |
+|------- |----------------- |
+| Debian  | dpkg &#x2013;list |
+| Red Hat | rpm -qa           |
+| Arch    | pacman -Q         |
+
+
+<a id="orgfef73ac"></a>
+
+### Determining if a package is installed
+
+| Style   | Commands                                   |
+|------- |------------------------------------------ |
+| Debian  | dpkg &#x2013;status package<sub>name</sub> |
+| Red Hat | rpm -q package<sub>name</sub>              |
+| Arch    | pacman -F package<sub>name</sub>           |
+
+
+<a id="orgbabf08c"></a>
+
+### Displaying Info About an Installed Package
+
+| Style   | Commands                              |
+|------- |------------------------------------- |
+| Debian  | apt-cache show package<sub>name</sub> |
+| Red Hat | yum info package<sub>name</sub>       |
+
+
+<a id="orgf44d274"></a>
+
+# 15 | Storage Media
+
+| command     | description                                  |
+|----------- |-------------------------------------------- |
+| mount       | mount a file system                          |
+| umount      | unmount a file system                        |
+| fsck        | check and repair a file system               |
+| mkfs        | create a file system                         |
+| fdformat    | format a floppy disk                         |
+| dd          | write block oriented data directly to device |
+| genisoimage | create iso 9660 image file                   |
+| wodim       | write data to optical storage media          |
+| md5sum      | calculate an MD5sum                          |
+
+
+<a id="orgcc723aa"></a>
+
+### Mounting and Unmounting Storage Devices
+
+The first step in managing a storage device is attaching the device to a file system tree. This process, called mounting, allows the device to participate with the operating system. As a reminder, unix like systems maintain a single file tree with devices attached at different points. This contrasts with other operating systems which maintain separate file system trees for each device.
+
+A file named /etc/fstab lists the devices that are to be mounted at boot time.
+
+```sh
+cat /etc/fstab
+```
+
+Each line of the file consists of six fields:
+
+-   Device: This field usually contains the actual name of a device file associated with the physical device such as *dev/hda1*. With modern computers, we often see devices associated with a text label instead (such as for a flash drive).
+
+-   Mount point: The directory where the device is attached to the file system tree.
+
+-   File System Type: Most native linux systems are ext3, but many others are supported, such as FAT16, FAT32, NTFS, CDROM, etc.
+
+-   Options: File systems can be mounted with various options, such as read only, or to prevent any programs from being executed from them.
+
+-   Frequency: Specifies if and when a file system is to be backed up with the dump command.
+
+-   Order: Specifies what order file systems should be checked with the fsck command.
+
+
+<a id="org15567a1"></a>
+
+### Viewing a List of Mounted File Systems
+
+The mount command is used to mount file systems.
+
+```sh
+mount
+```
+
+
+<a id="orgcfd5253"></a>
+
+### Determining Device Names
+
+The /dev directory is where all the devices live. We can see the recognized devices
+
+```sh
+ls /dev
+```
+
+| Pattern   | Device                                                    |
+|--------- |--------------------------------------------------------- |
+| /dev/fd\* | floppy disk                                               |
+| /dev/hd\* | IDE (PATA) disks on older systems                         |
+| /dev/lp\* | printers                                                  |
+| /dev/sd\* | SCSI disks. Modern systems treat all disks as  SCSI disks |
+| /dev/sr\* | Optical drives                                            |
+
+
+<a id="org0ff8230"></a>
+
+### Creating New File Systems
+
+Suppose we wish to reformat a flash drive with a linux native file system. This involves two steps:
+
+1.  Create a new partition layout (optional)
+2.  Create a new, empty file system on the drive
+
+To do the first part, we can use the fdisk program to interact directly with disk level devices.
+
+Make sure to use the actual device names, and not this generic name. It might be correct, but if it isn't this is a problematic thing to do.
+
+```sh
+sudo umount /dev/sdb1 
+sudo fdisk /dev/sdb 
+```
+
+Following the instructions in the program should allow you to properly change the disk's file system type to a linux native one.
+
+For the second part, we can make a new file system with mkfs. Here is how we can install an ext4 file system on our disk.
+
+```sh
+sudo mkfs -t ext4 /dev/sdb1 
+```
+
+
+<a id="org942c46d"></a>
+
+### Moving Data Directly To/From Devices
+
+We usually think of data as consisting of files &#x2013; but we could also picture is as consisting of blocks of data in a raw form. Since we can treat a disk drive as simply a large collection of data blocks, we can perform useful tasks such as cloning devices.
+
+The dd program copies blocks of data from one place to another.
+
+```sh
+dd if=input_file of=output_file [bs=block_size [count=blocks]]
+```
+
+If we had two USB flash drives of the same size and we wanted an exact copy of the first to the second, we could do this as such. Suppose we attach both and the first and second drives are assigned to devices /dev/sdb and /dev/sdc respectively.
+
+```sh
+dd if=/dev/sdb of=/dev/sdc
+```
+
+Alternatively, if just the first device were attached to the computer, we could copy its contents to an ordinary file for later restoration or copying.
+
+```sh
+dd if=/dev/sdb of=flash_drive.img
+```
+
+**Warning**. Always double check your input and output file specifications before hitting enter. dd stands for data definition, but it is also sometimes called destroy disk because of mistypes if or of specifications
+
+
+<a id="orgde20831"></a>
+
+### Creating an Image from a Collection of Files
+
+We can use the genisoimage program to create an iso file containing the elements of a directory. To do this, we first create a directory containing all the files we wish to include in the image.
+
+```sh
+genisoimage -o output_image.iso -R -J ~/given_directory
+```
+
+The -R option adds metadata for Rock Ridge extensions, which allows the use of long filenames and POSIX style file permissions. Likewise, the -J option enables the Joliet extensions, which permit long filenames for windows.
+
+
+<a id="orge9b6c46"></a>
+
+### Mounting an ISO Image Directly
+
+There is a trick we can use to mount an iso image while it is still on our hard disk and treat it as though it were already on optical media. By adding the -o loop option tomount we can mount the image file as though it were a device and attach it to the file system tree.
+
+```sh
+mkdir /mnt/iso_image 
+mount -t iso9660 -o loop image.iso /mnt/iso_image
+```
+
+After the image is mounted, it can be treated just as though it were a real cd-rom or dvd. Remember to unmount the image when it is no longer needed.
+
+
+<a id="orgd69c7fd"></a>
+
+# 16 | Networking
+
+| Command    | Description                                                                                                        |
+|---------- |------------------------------------------------------------------------------------------------------------------ |
+| ping       | send an ICMP ECHO REQUEST to network hosts                                                                         |
+| traceroute | print the route packets trace to a host                                                                            |
+| netstat    | print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships |
+| ftp        | internet file transfer protocol                                                                                    |
+| wget       | non interactive network downloader                                                                                 |
+| ssh        | openSSH SSH client                                                                                                 |
+
+
+<a id="org4ed117b"></a>
+
+### Examining and Monitoring a Network
+
+**ping**
+
+The ping command sends a special network packet called an IMCP ECHO<sub>REQUEST</sub> to a specified host. Most network devices receiving this packet will reply to it, allowing network connection to be verified.
+
+```sh
+ping linuxcommand.org
+```
+
+Once started, ping will continue to send packets at a specified interval until it is interrupted.
+
+**traceroute**
+
+The traceroute program displays a listing of all the hops network traffic takes to get from the local system to a specified host.
+
+Some systems (like Arch) use tracepath instead
+
+```sh
+traceroute reddit.com
+```
+
+In the output we see that we need to traverse several routers to reach a website. For routers that provide identifying information, we see hostnames, IP addresses, and performance data which includes three samples of round trip time from the local system to the router.
+
+**netstat**
+
+The netstat program is used to examine various network settings and statistics. It has many options.
+
+For example, using the -ie option we can examine the network interfaces in our system.
+
+```sh
+netstat -ie
+```
+
+Using the -r option will display the kernel's network routing table. This shows how the network is configured to send packets from network to network.
+
+```sh
+netstat -r
+```
+
+
+<a id="org8ed4390"></a>
+
+### Transporting Files Over a Network
+
+**ftp**
+
+ftp is named for the protocol it uses: file transfer protocol.
+
+ftp is used to communicate with ftp servers, which contain files that can be downloaded and uploaded over a network.
+
+FTP in its original form is not secure since it sends account names and passwords in cleartext. This means that they are not encrypted and anyone sniffing the network can see them. As a result, almost all of the FTP done over the internet is done by anonymous FTP. This allows users to login using the username anonymous and a meaningless password.
+
+There are many ftp clients. One of the more popular ones is lftp which works like the original ftp program but with more convenience features like multiple protocol support, automatic retry on downloads, background processes, tab completion of path names, and more.
+
+**wget**
+
+wget is another popular command line tool for downloading files. It is useful for both web and FTP sites, and has options for downloading files recursively, in the background, and completing the download of a partially downloaded file.
+
+For example, we could use wget to download an entire site like so
+
+```sh
+wget reddit.com
+```
+
+**ssh**
+
+SSH solves two problems of secure communication with a remote host.
+
+1.  it authenticates that the remote host is who it says it is
+2.  it encrypts all of the communications between the local and remote hosts
+
+SSH consists of two parts:
+
+An SSH server runs on the remote host, listening for incoming communications on port 22, while an SSH client is used on the local system to communicate with the remote server.
+
+```sh
+ssh remote-system
+```
+
+We can also connect to a remote system and run a single command
+
+```sh
+ssh remote-system free
+```
+
+We can also run a command on a remote server and redirect the output to a file on our local system
+
+```sh
+ssh remote-system 'ls *' > dir_list.txt
+```
+
+If we wanted the file to be placed on the remote system instead we would need to change the placement of our quotes
+
+```sh
+ssh remote-system 'ls * > dir_list.txt'
+```
+
+**scp and sftp**
+
+openSSH also contains these two programs which allow us to make use of an SSH encrypted tunnel to copy files across the network.
+
+scp (secure copy) allows us to copy files across different hosts on the network. For example, if we wanted to copy a document named document.txt from our home directory on the remote system to our current working director on our local system, we could do the following
+
+```sh
+scp remote-system:document.txt . 
+```
+
+As with SSH, we can also add a username to the beginning of the remote hosts name if the desired remote host account name does not match that of the local system
+
+```sh
+scp michael@remote-system:document.txt
+```
+
+sftp (secure file transfer protocol) is a secure replacement for file transfer protocol. sftp has the advantage over regular ftp in that it does not require that the remote host is running an FTP server - it only requires the ssh server.
+
+This means that any remote machine that can connect with the SSH client can be used as an ftp server. We can even use sftp in conjunction with the Nautilus (gnome) or Konqueror (KDE) graphical file managers. We can enter a URI beginning with sftp:// into the location bar and operate on files stored in the remote system.
+
+
+<a id="orgcb5de81"></a>
+
+# 17 | Searching for Files
+
+| command | description                                |
+|------- |------------------------------------------ |
+| locate  | find files by name                         |
+| find    | search for files in a directory hierarchy  |
+| xargs   | build and execute command lines from stdin |
+| touch   | change file times                          |
+| stat    | display file or file system status         |
+
+
+<a id="org186cf6e"></a>
+
+### locate - fine files the easy way
+
+The locate program performs a rapid database search of pathnames, and then outputs every name that matches a given substring. There are a variety of different locates on different distributions, but they usually use the alias for locate. The two most common are mlocate and slocate.
+
+locate uses a database in order to find things. The locate database program is created by another program called updatedb which is usually run periodically as a cron job. Most systems update once a day, so locate may fail to find files created very recently unless the updatedb program is manually ran.
+
+```sh
+locate /bin/zip
+```
+
+We can also combine locate with other tools like grep
+
+```sh
+locate zip | grep bin
+```
+
+
+<a id="org7f9e5e3"></a>
+
+### find - find files the hard way
+
+While the locate program can find a file based solely on its name, find searches a given directory. In its simplest use, we can use it to output all the files in a directory.
+
+```sh
+find ~
+```
+
+This tends to return a very long output, so it is often useful to use this in conjunction with pipes.
+
+```sh
+find ~ | wc -l
+```
+
+The beauty of find is that it can be used to identify files that meet certain criteria. It does this through the application of options, test, and actions.
+
+**tests**
+
+Suppose we want a list of directories from our search. We can add the following test
+
+```sh
+find ~ -type d | wc -l
+```
+
+We could have also limited the search to regular files as well.
+
+```sh
+find ~ -type f | wc -l
+```
+
+Here are the common file type tests supported by find
+
+| File Type | Description                   |
+|--------- |----------------------------- |
+| b         | block special device file     |
+| c         | character special device file |
+| d         | directory                     |
+| f         | regular file                  |
+| l         | symbolic link                 |
+
+We can also search by things like file size and type as well
+
+```sh
+find ~ -type f -name "*.jpg" -size +1M | wc -l
+```
+
+find supports a wide variety of tests. These can be found by looking at the man page for find.
+
+**operators**
+
+We need to have a way to describe logical relationships between the tests.
+
+For example, suppose we needed to determine if all the files and subdirectories in a directory had secure permissions?
+
+```sh
+find ~ -type f -not -perm 0600 -or -type d -not -perm 0700
+```
+
+**Predefined Actions**
+
+find allows actions to be performed on the items that are returned. Here are some of the predefined actions
+
+| action  | description                        |
+|------- |---------------------------------- |
+| -delete | delete the matching files          |
+| -ls     | perform ls -dils on matching files |
+| -print  | output full pathname to stdout     |
+| -quit   | quit once a match is made          |
+
+As an example, if we wished to find backup files with the extension .bak and delete them we could use the following command
+
+```sh
+find ~ -type f -name '.bak' -delete
+```
+
+**user defined actions**
+
+In addition to the predefined actions, we can also invoke arbitrary commands. Traditionally we would do this with the -exec action.
+
+```sh
+-exec command {};
+```
+
+where command is the name of a command, {} is a symbolic representation of the current pathname, and the semicolon is a required delimiter indicating the end of the command.
+
+We can also execute a user defined action interactively. By using the -ok action in place of -exec, the user is prompted before execution of each specified command.
+
+```sh
+find ~ -type f -name 'foo*' -ok ls -l '{}' ';'
+```
+
+In this example, we searched for files with names starting with the string foo and executed the command ls -l each time one is found. The -ok action prompts the user before the ls command is executed.
+
+**improving efficiency**
+
+When we use the exec action, it launches a new instance of the specified command each time a matching file is found.
+
+Rather than executing commands like this
+
+ls -l file1 ls -l file2
+
+we would prefer to execute them this way
+
+ls -l file1 file2
+
+causing the command to be executed only one time rather than multiple times. We can do this with either xargs or with find itself. We can start with find.
+
+By changing the trailing semicolon ; to a plus sign + we activate the ability of find to combine the results of the search into an argument list for a single execution of the desired command.
+
+Taking the example from before
+
+```sh
+find ~ -type f -name 'foo*' -exec ls -l '{}' +
+```
+
+In the example above, the system only needed to execute the ls command once.
+
+**xargs**
+
+The xargs command accepts input fron stdin and converts it into an argument list for a specified command. For our example, we would use it like this
+
+```sh
+find ~ -type f -name 'foo*' -print | xargs ls -l
+```
+
+
+<a id="orgad90057"></a>
+
+# 18 | Archiving and Backup
+
+| command | description                               |
+|------- |----------------------------------------- |
+| gzip    | compress or expand files                  |
+| bzip2   | a block sorting file compressor           |
+| tar     | tape archiving utility                    |
+| zip     | package and compress files                |
+| rsync   | remote file and directory synchronization |
+
+
+<a id="org7fbfbc3"></a>
+
+## Compressing Files
+
+Data compression is the process of removing redundancy from data.
+
+**gzip**
+
+The gzip program is used to compress one or more files. When executed, it replaces the original file with a compressed version of the original. We also have a corresponding gunzip program for returning the file back to its original form.
+
+```sh
+ls -l /etc > foo.txt
+ls -l foo.* 
+gzip foo.txt 
+ls -l foo.* 
+gunzip foo.txt 
+ls -l foo.* 
+```
+
+We see that the file gets replaced by the compressed version and that the compressed version is less than a fifth the size of the original.
+
+gzip has many options:
+
+| option  | description                                |
+|------- |------------------------------------------ |
+| -c      | write to stdout. keep original files       |
+| -d      | decompress                                 |
+| -f      | force compression                          |
+| -h      | display usage information                  |
+| -l      | list compression statistics                |
+| -r      | recursively compress files                 |
+| -t      | test the integrity of a compressed file    |
+| -v      | display verbose methods while compressing  |
+| -number | set amount of compression [1-9] most-least |
+
+For example:
+
+```sh
+gzip foo.txt 
+gzip -tv foo.txt.gz 
+gzip -d foo.txt.gz 
+```
+
+We can also use gzip with pipes as well. This command creates a compressed version of the directory listing.
+
+```sh
+ls -l /etc | gzip > foo2.txt.gz 
+```
+
+The gunzip program assumes that files have a .gz extension, so it is not necessary to specify it as long as the specified name is not in conflict with an existing uncompressed file.
+
+```sh
+gunzip foo2.txt 
+```
+
+If we only wished to view the contents of a compressed text file, we could use the -c option or we could use a program supplied with gzip called zcat
+
+```sh
+gunzip -c foo.txt | head -n 5
+zcat foo.txt.gz | head -n 5
+```
+
+There is even a zless program which pipes the output of zcat into a less prompt.
+
+**bzip2**
+
+bzip2 is similar to gzip, but it uses a different compression algorithm that achieves higher levels of compression at the cost of compression speed.
+
+A file that has been compressed with bzip2 has a .bz2 extension.
+
+bzip2 can be used in essentially the same way as gzip. The options are all the same as well, with the exception of the -r option. It also comes with another command called bzip2recover which will try to recover damaged bzip2 files.
+
+
+<a id="org32869f0"></a>
+
+## Archiving Files
+
+Archiving is the process of gathering up many files and bundling them together into a single large file. It is often done as part of system backups.
+
+**tar**
+
+The tar program is the classic tool for archiving files. Filenames often end with .tar or .tar.gz which indicate a plain tar file or a gzipped archive respectively.
+
+A tar file can consist of a group of separate files, one or more directory hierarchies, or a mixture of both.
+
+The command syntax works like this
+
+```sh
+tar mode[options] pathname...
+```
+
+where mode is one of the following operating modes
+
+| mode | description                                         |
+|---- |--------------------------------------------------- |
+| c    | create an archive                                   |
+| x    | extract an archive                                  |
+| r    | append specified pathnames to the end of an archive |
+| t    | list the contents of an archive                     |
+
+tar allows us to do some interesting things. Suppose we wish to copy the home directory and its contents from one system to another and we have a large flash drive that will facilitate the transfer.
+
+Suppose we have our drive mounted in the /media directory.
+
+We could do something like the following to make the tar archive.
+
+```sh
+sudo tar cf /media/usb_drive/home.tar /home 
+```
+
+After the file is written, we unmount the drive and attach it to the second computer. Then we can extract the archive like so
+
+```sh
+cd /
+sudo tar xf /media/usb_drive/home.tar 
+```
+
+When extracting an archive, we can also limit what is extracted from the archive.
+
+```sh
+tar xf archive.tar pathname 
+```
+
+By adding the trailing pathname to the command, tar will only restore the specified file.
+
+tar is often used in conjunction with find in order to produce archives.
+
+```sh
+find folder_name -name 'file_name' -exec tar rf folder_name.tar '{}' '+'
+```
+
+Another interesting use of tar is transferring files between systems over a network. For example, suppose we had two systems with ssh and tar and we wished to transfer a directory from a remote system to our local system
+
+```sh
+mkdir remote_stuff 
+cd remote_stuff 
+ssh remote_system 'tar cf - Documents' | tar xf - 
+ls 
+```
+
+Here we were able to copy the Documents folder on our remote server into a folder called remote<sub>stuff</sub> on our local machine.
+
+**zip**
+
+The zip program is both a compression tool and an archiver. This is more familiar for windows users, but in Linux generally gzip or bzip2 is used.
+
+```sh
+zip options zipfile file...
+```
+
+To unzip the files, we use unzip
+
+```sh
+unzip file.zip 
+```
+
+If an existing archive is specified, it is updated rather than replaced.
+
+Similarly to the other compression tools, we can specify files within an archive to unzip
+
+```sh
+unzip file.zip files/file_dir/file_name
+```
+
+We can also use zip in a pipe, but we must specify the list of filenames with the -@ option
+
+```sh
+find folder_name -name "file_name" | zip -@ file_name.zip
+```
+
+
+<a id="org9c99398"></a>
+
+## Synchronizing Files
+
+A common strategy for maintaining a backup copy of a system involves keeping one or more directories synchronized with another directory located on either the local system or a remote system.
+
+In the Unix world, the preferred tool for this task is **rsync**. It can synchronize both local and remote directories using the rsync remote-update protocol, which detects differences between two directories and performs the minimum amount of copying required to bring them into sync.
+
+```sh
+rsync options source destination
+```
+
+Where source and destination are one of the following:
+
+-   A local file or directory
+-   A remote file or directory in the form of [user@]host:path
+-   A remote rsync server specified with a URI of rsync://[user@]host[:port]/path
+
+Either the source or the destination must be a local file. Remote to remote copying is not supported.
+
+As a practical example, consider we have an external hard drive that is mounted at /media/mounted<sub>disk</sub>. Then we can perform a system backup by first creating a directory named /backup on the external drive, and then use rsync to copy the most important stuff from our system to the external drive.
+
+```sh
+mkdir /media/mounted_disk/backup 
+sudo rsync -av --delete /etc /home /usr/local /media/mounted_disk/backup 
+```
+
+In this example, we create backups of the /etc, /home, and /usr/local directories from our system to our storage device. We include the &#x2013;delete option to remove files that may have existed on the backup device that no longer exist on the source device.
+
+**Using rsync over a network**
+
+Remote copying can be done in one of two ways:
+
+The first way is with another system that has rsync installed, along with a remote shell program like ssh.
+
+Suppose we wish to backup our system to another system on the local network with a lot of available space instead of an external drive. Assuming that we have a directory named /backup where we could deliver our files, we could do this:
+
+```sh
+sudo rsync -av --delete --rsh=ssh /etc /home /usr/local remote-sys:/backup
+```
+
+The second way that rsync can be used to synchronize files over a network is by using an rsync server. We can configure rsync to run as a daemon and listen to incoming requests for synchronization.
+
+For example, Red Hat maintains a repository of under development software. Files here change frequently (often more than once per day), so it is desirable to maintain a local mirror by periodic synchronization rather than bulk copying of the repository. One of the repositories is at georgia tech; we could mirror it using our local copy of rsync and their rsync server like this:
+
+```sh
+mkdir fedora-devel
+rsync -av -delete rsync://rsync.gtlib.gatech.edu/fedora-linux-core/development/i386/os fedora-devel
 ```
