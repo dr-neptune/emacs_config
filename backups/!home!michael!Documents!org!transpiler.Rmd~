@@ -1,5 +1,0 @@
-```{r}
-input_org <- readr::read_file("org_literate.org")
-
-
-```
