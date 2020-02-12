@@ -125,7 +125,8 @@ This needs to be updated eventually to prevent the hassle of downloading all the
  'org-babel-load-languages
  '((R . t)
    (shell . t)
-   (scheme . t)))
+   (scheme . t)
+   (clojure . t)))
 #+END_SRC
 
 ** Set confirm run code block to autorun
@@ -585,7 +586,69 @@ This will load geiser mode with an mit scheme repl
 (setq geiser-active-implementations '(mit))
 #+END_SRC
 * Clojure
+** clojure chunk
+
+#+BEGIN_SRC emacs-lisp
+(defun tws-insert-clojure-chunk () 
+  (interactive) 
+  (insert (concat "#+BEGIN_SRC clojure" "\n\n#+END_SRC")) 
+  (forward-line -1))
+
+(global-set-key (kbd "C-c x") 'tws-insert-clojure-chunk)
+#+END_SRC
+
+** repl
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'clojure-mode-hook 'cider-mode)
+(require 'ob-clojure)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(setq org-babel-clojure-backend 'cider)
+(require 'cider)
+#+END_SRC
+
+** autocomplete
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+#+END_SRC
+
+#+RESULTS:
+| company-mode |
+
 * Rust
+** autocomplete
+
+Reduce the time after which the company auto completion popup opens
+
+#+BEGIN_SRC emacs-lisp
+(setq company-idle-delay 0.2)
+#+END_SRC
+
+Reduce the number of characters before company kicks in 
+
+#+BEGIN_SRC emacs-lisp
+(setq company-minimum-prefix-length 1)
+#+END_SRC
+** racer 
+** recognize rs files
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust.mode))
+#+END_SRC
+** configuration for rust mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'racer-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(global-set-key (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+#+END_SRC
+
 * ELisp
 ** Paredit
 
