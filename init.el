@@ -10,7 +10,10 @@
  '(custom-enabled-themes (quote (doom-vibrant)))
  '(custom-safe-themes
    (quote
-    ("1c082c9b84449e54af757bcae23617d11f563fc9f33a832a8a2813c4d7dfb652" default))))
+    ("1c082c9b84449e54af757bcae23617d11f563fc9f33a832a8a2813c4d7dfb652" default)))
+ '(package-selected-packages
+   (quote
+    (w3m w3 poly-org sesman clojure-mode slime highlight-symbol company company-racer flycheck flycheck-rust ob-rust racer rust-mode org-ac use-package tagedit smex scheme-complete rainbow-delimiters projectile pretty-symbols pretty-mode prettify-greek pomodoro poly-R paredit ox-gfm org-pdfview org-notebook org-download org-bullets org-attach-screenshot nyan-mode material-theme magit load-dir immaterial-theme ido-completing-read+ htmlize gh-md geiser exec-path-from-shell ess elpy doom-themes dbus-codegen clojure-mode-extra-font-locking cider blacken babel auto-org-md))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -118,6 +118,29 @@ This needs to be updated eventually to prevent the hassle of downloading all the
  '(org-indent                ((t (:inherit (org-hide fixed-pitch))))))
 #+END_SRC
 * Org Babel 
+** poly org
+
+#+BEGIN_SRC emacs-lisp
+(require 'poly-org)
+#+END_SRC
+** set calculation number formatting
+
+#+BEGIN_SRC emacs-lisp
+(setq org-calc-default-modes
+      '(
+        calc-internal-prec 5
+                           cal
+                           calc-float-format (float 0)
+                           calc-angle-mode deg
+                           calc-prefer-frac nil
+                           calc-symbolic-mode nil
+                           calc-date-format (YYYY "-" MM "-" DD " " Www (" " HH ":" mm))
+                           calc-display-working-message t))
+#+END_SRC
+
+#+RESULTS:
+| calc-internal-prec | 5 | calc-float-format | (float 0) | calc-angle-mode | deg | calc-prefer-frac | nil | calc-symbolic-mode | nil | calc-date-format | (YYYY - MM - DD   Www (  HH : mm)) | calc-display-working-message | t |
+
 ** Load Languages
 
 #+BEGIN_SRC emacs-lisp
@@ -161,6 +184,43 @@ This needs to be updated eventually to prevent the hassle of downloading all the
   (org-download-screenshot))
 
 (global-set-key (kbd "C-M-g") 'org-insert-screenshot)
+#+END_SRC
+
+** Make properties 
+
+For R
+
+#+BEGIN_SRC emacs-lisp
+(defun tws-insert-properties-R ()
+  (interactive) 
+  (insert (concat ":PROPERTIES:
+:header-args: :session R-session :results output value table :colnames yes
+:END:
+
+#+NAME: round-tbl
+#+BEGIN_SRC emacs-lisp :var tbl='' fmt='%.1f'
+(mapcar (lambda (row)
+          (mapcar (lambda (cell)
+                    (if (numberp cell)
+                        (format fmt cell)
+                      cell))
+                  row))\n#+end_src
+"))
+  (forward-line 1))
+
+(global-set-key (kbd "C-c 0") 'tws-insert-properties-R)
+#+END_SRC
+
+For Scheme
+
+#+BEGIN_SRC emacs-lisp
+(defun tws-insert-properties-scheme ()
+  (interactive)
+  (insert (concat ":PROPERTIES:\n:header-args: :session scheme :results verbatim raw\n:END:"
+))
+  (forward-line 1))
+
+(global-set-key (kbd "C-c 9") 'tws-insert-properties-scheme)
 #+END_SRC
 
 * Navigation
@@ -307,6 +367,7 @@ These relate to how emacs interacts with the operating system's copy paste comma
         ("%>%" . 8692)
         ("%<>%" . 10568)
         ("#+BEGIN_SRC" . 119070)
+        (":post round-tbl[:colnames yes](*this*)" . 9798)
         ("#+END_SRC" . 119074)
         ("#+RESULTS:")
         ))
@@ -328,18 +389,25 @@ These relate to how emacs interacts with the operating system's copy paste comma
               (push '("%<>%" . 8619) prettify-symbols-alist)
               (push '("<<-" . 10557) prettify-symbols-alist)
               (push '("#+BEGIN_SRC" . 119070) prettify-symbols-alist)
+              (push '(":post round-tbl[:colnames yes](*this*)" . 9798) prettify-symbols-alist)
+              (push '(":file plot.svg :results graphics file" . 9797) prettify-symbols-alist)
               (push '("#+END_SRC" . 119074) prettify-symbols-alist)
               (push '("#+RESULTS:" . 8889) prettify-symbols-alist)))
 
   (global-prettify-symbols-mode +1))
 #+END_SRC
 
+#+RESULTS:
+: t
+
 ** Rainbow Delimiters Mode
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'ess-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'scheme-mode-hook #'rainbow-delimiters-mode)
 #+END_SRC
+
 * Editing
 ** Hippie expand for text autocompletion
 
@@ -441,7 +509,7 @@ These relate to how emacs interacts with the operating system's copy paste comma
 ** Nyan-mode
 
 #+BEGIN_SRC emacs-lisp
-(nyan-mode t)
+; (nyan-mode t)
 #+END_SRC
 * R
 ** Load required packages for R files 
@@ -506,6 +574,28 @@ Assignment Operator <-
   (insert "<- "))
 
 (global-set-key (kbd "C-c C-<SPC>") 'tws-insert-r-assign)
+#+END_SRC
+
+** R org mode chunks
+
+#+BEGIN_SRC emacs-lisp
+(defun tws-insert-r-org-chunk () 
+  (interactive)
+  (insert (concat "#+BEGIN_SRC R :post round-tbl[:colnames yes](*this*)" "\n\n#+END_SRC")) 
+  (forward-line -1))
+
+(global-set-key (kbd "C-c m") 'tws-insert-r-org-chunk)
+#+END_SRC
+
+With graphics 
+
+#+BEGIN_SRC emacs-lisp
+(defun tws-insert-r-org-plot-chunk () 
+  (interactive)
+  (insert (concat "#+BEGIN_SRC R :file plot.svg :results graphics file" "\n\n#+END_SRC")) 
+  (forward-line -1))
+
+(global-set-key (kbd "C-c n") 'tws-insert-r-org-plot-chunk)
 #+END_SRC
 
 ** Autocomplete 
@@ -576,6 +666,7 @@ Remove smart-S-assign from ESS
 
 (global-set-key (kbd "C-c d") 'tws-insert-scheme-chunk)
 #+END_SRC
+
 ** Geiser Mode
 
 This will load geiser mode with an mit scheme repl
